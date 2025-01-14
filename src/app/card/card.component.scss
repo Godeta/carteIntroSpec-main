@@ -1,0 +1,51 @@
+/* Style for the card to take up more vertical space */
+.card {
+    margin: 20px auto; /* Center the card horizontally */
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    height: 70vh; /* Make the card take 70% of the viewport height */
+    max-width: 90%; /* Ensure the card doesn't exceed the screen width */
+  }
+
+  
+  
+
+  
+  /* Style for the shiny button */
+  .shiny-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  
+    &:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  /* Style for the category selector */
+  .category-selector {
+    margin: 20px;
+    text-align: center;
+  
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px; /* Rounded corners for the select box */
+      border: 1px solid #ccc; /* Light border for better visibility */
+      /* Optional: Add a subtle shadow to the select box */
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    }
+  }
