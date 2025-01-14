@@ -1,0 +1,7 @@
+{
+  "name": "carteIntrospec",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
