@@ -1,9 +1,53 @@
 <header>
-  <h1>Home</h1>
+  <h1>CarteIntroSpec</h1>
 </header>
 
 <main>
-  <div id="container">
-    <button class="shiny-button" routerLink="/card">Go to Cards</button>
+  <div id="container" [class.info-active]="showInfo">
+    <!-- Main Content -->
+    <div class="game-intro" [class.hide]="showInfo">
+      <p class="tagline">Explorez, Réfléchissez, Découvrez-vous</p>
+      <div class="button-container">
+        <button class="shiny-button primary" routerLink="/card">Commencer une partie de cartes</button>
+        <button class="shiny-button secondary" (click)="toggleOptions()">Options</button>
+        <button class="shiny-button info" (click)="toggleInfo()">Infos</button>
+      </div>
+      
+      <div class="options-panel" *ngIf="showOptions">
+        <h2>Options</h2>
+        <div class="option-item">
+          <label>Thème:</label>
+          <select [(ngModel)]="selectedTheme" (change)="updateTheme(selectedTheme)">
+            <option value="light">Clair</option>
+            <option value="dark">Sombre</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="info-panel" [class.active]="showInfo">
+      <button class="close-button" (click)="toggleInfo()">×</button>
+      
+      <div class="info-section">
+        <h2>Qu'est-ce que CarteIntroSpec ?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="info-section">
+        <h2>L'histoire derrière l'app</h2>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+
+      <div class="info-section">
+        <h2>Vision & Perspectives</h2>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </div>
+
+    <footer class="credits">
+      <p>Créé par Arnaud GODET, Janvier 2025</p>
+      <p class="version">Version 1.0.0</p>
+    </footer>
   </div>
 </main>

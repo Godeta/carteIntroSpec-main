@@ -1,51 +1,200 @@
-/* Style for the card to take up more vertical space */
+/* Container for centering the card */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px); /* Adjust based on your header/selector height */
+  padding: 20px;
+}
+
+/* Card styling */
 .card {
-    margin: 20px auto; /* Center the card horizontally */
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
-    height: 70vh; /* Make the card take 70% of the viewport height */
-    max-width: 90%; /* Ensure the card doesn't exceed the screen width */
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  /* Mobile first design */
+  width: 90%;
+  height: 80vh;
+  
+  /* Desktop styles */
+  @media (min-width: 768px) {
+    width: 30%;
+    height: 60vh;
+    min-width: 400px; /* Ensure card doesn't get too narrow */
   }
 
-  
-  
-
-  
-  /* Style for the shiny button */
-  .shiny-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  
+  /* Add a subtle hover effect on desktop */
+  @media (hover: hover) {
     &:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
     }
+  }
+}
+
+/* Category badge at the top of the card */
+.category-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Card content layout */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 60px 20px 30px; /* Added top padding for category badge */
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    line-height: 1.4;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Next button positioning */
+.next-button {
+  margin-top: auto;
+  align-self: center;
   
-    &:active {
-      transform: scale(0.95);
+  /* Make button more prominent */
+  background: linear-gradient(45deg, #2196F3, #21CBF3);
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-weight: 600;
+  
+  /* Add icon if desired */
+  span {
+    display: inline-flex;
+    align-items: center;
+    
+    &::after {
+      content: '→';
+      margin-left: 8px;
+      transition: transform 0.2s ease;
     }
   }
   
-  /* Style for the category selector */
-  .category-selector {
-    margin: 20px;
-    text-align: center;
-  
-    select {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px; /* Rounded corners for the select box */
-      border: 1px solid #ccc; /* Light border for better visibility */
-      /* Optional: Add a subtle shadow to the select box */
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    }
+  &:hover span::after {
+    transform: translateX(4px);
   }
+}
+
+/* Category selector styling */
+.category-selector {
+  margin: 20px;
+  text-align: center;
+  
+  label {
+    margin-right: 10px;
+    font-weight: 500;
+  }
+  
+  select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 2px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus {
+      border-color: #2196F3;
+    }
+    
+    /* Custom dropdown arrow */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+    padding-right: 40px;
+  }
+}
+
+/* Add swipe animation */
+@keyframes swipeIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card {
+  animation: swipeIn 0.3s ease-out;
+// Add smooth transition for swipe
+transition: transform 0.3s ease-out;
+  
+&.swiping {
+  transition: none; // Disable transition during active swipe
+}
+}
+
+// Update swipe animations
+@keyframes swipeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes swipeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+@keyframes swipeIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card-exit-left {
+  animation: swipeOutLeft 0.3s ease-out;
+}
+
+.card-exit-right {
+  animation: swipeOutRight 0.3s ease-out;
+}
+
+.card {
+  animation: swipeIn 0.3s ease-out;
+}

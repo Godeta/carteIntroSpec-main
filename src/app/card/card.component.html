@@ -12,8 +12,15 @@
     </select>
   </div>
 
-  <div class="card" [ngStyle]="{'background-color': currentCardColor}">
-    <h1>{{ currentCard.question }}</h1>
-    <button class="shiny-button" (click)="nextCard()">Next Question</button>
+  <div class="card-container">
+    <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
+      <div class="category-badge">{{ currentCard.category }}</div>
+      <div class="card-content">
+        <h2>{{ currentCard.question }}</h2>
+        <button class="shiny-button next-button" (click)="nextCard()">
+          <span>Question suivante</span>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
