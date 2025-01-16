@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'enigme',
-    loadComponent: () => import('./enigme/enigme.component').then((m) => m.CardComponent),
+    loadComponent: () => import('./enigme/enigme.component').then((m) => m.EnigmeComponent),
   },
   {
     path: '',

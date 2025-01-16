@@ -1,25 +1,51 @@
-<header>
-  <h1>Cards</h1>
-  <button class="shiny-button" routerLink="/home">Back</button>
-</header>
-
-<main>
-  <div class="category-selector">
-    <label for="category">Select Category:</label>
-    <select id="category" (change)="onCategoryChange($event)">
-      <option value="all">All</option>
-      <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
+<main class="enigma-background">
+  <button class="back-button" routerLink="/home">
+    <span>↩️ Menu</span>
+  </button>
 
   <div class="card-container">
-    <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
-      <div class="category-badge">{{ currentCard.category }}</div>
-      <div class="card-content">
-        <h2>{{ currentCard.question }}</h2>
-        <button class="shiny-button next-button" (click)="nextCard()">
-          <span>Question suivante</span>
-        </button>
+    <!-- Start screen -->
+    <div *ngIf="!gameStarted" class="start-screen">
+      <h1>Énigmes Mystérieuses 🔍</h1>
+      <button class="enigma-button start-button" (click)="startGame()">
+        <span>Commencer une partie</span>
+      </button>
+    </div>
+
+    <!-- Game screen -->
+    <div *ngIf="gameStarted" class="game-screen">
+      <div class="category-description">
+        {{ categoryDescription }}
+      </div>
+      
+      <div class="scroll">
+        <div class="card">
+          <div class="category-badge">
+            <span class="category-icon">
+              {{ currentCard.category === 'Logique' ? '🧩' : 
+                 currentCard.category === 'Antique' ? '📜' : 
+                 currentCard.category === 'Math' ? '🔢' : '📚' }}
+            </span>
+            {{ currentCard.category }}
+          </div>
+          <div class="card-content">
+            <h2>{{ currentCard.question }}</h2>
+            
+            <!-- Answer section -->
+            <div class="answer-section">
+              <button class="enigma-button answer-button" (click)="toggleAnswer()">
+                <span>{{ isAnswerVisible ? 'Cacher la réponse 🙈' : 'Voir la réponse 👀' }}</span>
+              </button>
+              <div class="answer" [class.visible]="isAnswerVisible">
+                {{ currentCard.answer }}
+              </div>
+            </div>
+
+            <button class="enigma-button next-button" (click)="nextCard()">
+              <span>Énigme Suivante 🔍</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
