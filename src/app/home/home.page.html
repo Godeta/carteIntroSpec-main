@@ -8,9 +8,18 @@
     <div class="game-intro" [class.hide]="showInfo">
       <p class="tagline">Explorez, Réfléchissez, Découvrez-vous</p>
       <div class="button-container">
-        <button class="shiny-button primary" routerLink="/card">Commencer une partie de cartes</button>
-        <button class="shiny-button primary" routerLink="/fun">Jeux d'ambiance</button>
-        <button class="shiny-button primary" routerLink="/enigme">Enigmes</button>
+        <div class="shiny-button card-button" routerLink="/card">
+          <span class="star"></span>
+          Cartes d'Introspection
+        </div>
+        
+        <div class="shiny-button fun-button" routerLink="/fun">
+          Jeux d'Ambiance
+        </div>
+        
+        <div class="shiny-button enigma-button" routerLink="/enigme">
+          Énigmes
+        </div>
         <button class="shiny-button secondary" (click)="toggleOptions()">Options</button>
         <button class="shiny-button info" (click)="toggleInfo()">Infos</button>
       </div>

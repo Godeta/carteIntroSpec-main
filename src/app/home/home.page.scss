@@ -26,6 +26,8 @@
   gap: 1rem;
   align-items: center;
   margin: 2rem 0;
+
+  
 }
 
 .shiny-button {
@@ -42,7 +44,168 @@
     font-size: 1rem;
     padding: 15px 30px;
   }
+
+  // Cartes Introspection
+  &.card-button {
+    background: linear-gradient(45deg, #2196F3, #21CBF3);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+    }
+
+    &::before {
+      content: '🎴';
+      margin-right: 10px;
+    }
+  }
+  
+  // Jeux d'ambiance
+  &.fun-button {
+    background: linear-gradient(45deg, #9C27B0, #673AB7);
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    &::before {
+      content: '🎉';
+      margin-right: 10px;
+    }
+  }
+  
+  // Enigmes
+  &.enigma-button {
+    background: linear-gradient(45deg, #D4B483, #C4A473);
+    box-shadow: 0 4px 15px rgba(212, 180, 131, 0.3);
+    color: #5C4D3C;
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    border: 2px solid #B39B6D;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 180, 131, 0.4);
+    }
+
+    &::before {
+      content: '🔍';
+      margin-right: 10px;
+    }
+  }
+  font-weight: 700; // Make text bolder
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Add text shadow for better visibility
+  letter-spacing: 0.5px; // Improve text readability
+  position: relative; // For star animation positioning
+  
+  // Add glowing effect on hover
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  // Add subtle glow behind text
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  // Star animation element
+  .star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    animation: starRotate 3s linear infinite,
+               starOrbit 8s linear infinite;
+    
+    &::before {
+      content: '⭐';
+      font-size: 20px;
+      position: absolute;
+      animation: starPulse 1s ease-in-out infinite;
+    }
+  }
 }
+
+// Star rotation animation
+@keyframes starRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Star orbit animation
+@keyframes starOrbit {
+  0% {
+    left: -20px;
+    top: 50%;
+  }
+  25% {
+    left: 50%;
+    top: -20px;
+  }
+  50% {
+    left: calc(100% + 20px);
+    top: 50%;
+  }
+  75% {
+    left: 50%;
+    top: calc(100% + 20px);
+  }
+  100% {
+    left: -20px;
+    top: 50%;
+  }
+}
+
+// Star pulse animation
+@keyframes starPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Add multiple stars with different delays
+.button-container {
+  .shiny-button {
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        .star {
+          animation-delay: #{$i * 0.5}s;
+        }
+      }
+    }
+  }
+}
+
 
 .options-panel {
   background: rgba(255, 255, 255, 0.9);
@@ -157,3 +320,4 @@
   opacity: 0;
   visibility: hidden;
 }
+
