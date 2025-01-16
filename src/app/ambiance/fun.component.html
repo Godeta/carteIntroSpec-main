@@ -1,0 +1,34 @@
+<main class="party-background">
+  <!-- Back button -->
+  <button class="back-button" routerLink="/home">
+    <span>↩️ Menu</span>
+  </button>
+
+  <div class="card-container">
+    <!-- Start screen -->
+    <div *ngIf="!gameStarted" class="start-screen">
+      <h1>Jeu d'Ambiance 🎉</h1>
+      <button class="party-button start-button" (click)="startGame()">
+        <span>Commencer une partie</span>
+      </button>
+    </div>
+
+    <!-- Game screen -->
+    <div *ngIf="gameStarted" class="card">
+      <div class="cards-counter">
+        {{ cardsPlayed + 1 }}/{{ maxCards }}
+      </div>
+      <div class="card-type">
+        <span class="party-emoji">🎉</span>
+        {{ currentCard.type }}
+        <span class="party-emoji">🎉</span>
+      </div>
+      <div class="card-content">
+        <h2>{{ currentCard.question }}</h2>
+        <button class="party-button" (click)="nextCard()">
+          <span>Carte Suivante 🎲</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

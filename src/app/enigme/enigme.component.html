@@ -1,0 +1,26 @@
+<header>
+  <h1>Cards</h1>
+  <button class="shiny-button" routerLink="/home">Back</button>
+</header>
+
+<main>
+  <div class="category-selector">
+    <label for="category">Select Category:</label>
+    <select id="category" (change)="onCategoryChange($event)">
+      <option value="all">All</option>
+      <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <div class="card-container">
+    <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
+      <div class="category-badge">{{ currentCard.category }}</div>
+      <div class="card-content">
+        <h2>{{ currentCard.question }}</h2>
+        <button class="shiny-button next-button" (click)="nextCard()">
+          <span>Question suivante</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

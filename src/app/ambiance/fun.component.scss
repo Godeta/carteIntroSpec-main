@@ -1,0 +1,172 @@
+.party-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '✨';
+    position: absolute;
+    font-size: 24px;
+    animation: float 3s infinite;
+    opacity: 0.5;
+  }
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: linear-gradient(145deg, #2d1b4e, #3d2b5e);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  
+  @media (min-width: 768px) {
+    width: 70%;
+  }
+}
+
+.card-type {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  
+  .party-emoji {
+    margin: 0 10px;
+  }
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  
+  h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.4;
+  }
+}
+
+.party-button {
+  background: linear-gradient(45deg, #9c27b0, #673ab7);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// Add some floating sparkles
+@for $i from 1 through 10 {
+  .party-background::before:nth-of-type(#{$i}) {
+    left: random(100) * 1%;
+    top: random(100) * 1%;
+    animation-delay: random(3) * -1s;
+  }
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.start-screen {
+  text-align: center;
+  color: white;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+  }
+  
+  .start-button {
+    font-size: 1.5rem;
+    padding: 20px 40px;
+  }
+}
+
+.cards-counter {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  color: white;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+// Update card styles for better visibility of the counter
+.card {
+  margin-top: 40px; // Add space for the counter
+}
