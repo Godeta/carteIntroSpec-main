@@ -3,7 +3,7 @@ interface CategoryDescriptions {
 }
 
 // Interface for enigma cards
-interface EnigmaCard {
+export interface EnigmaCard {
   category: string;
   question: string;
   answer: string;

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonButton, IonRouterLink } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { categoryDescriptions, enigmaCards } from './enigma-data';
+import { categoryDescriptions, enigmaCards, EnigmaCard } from './enigma-data';
 
 @Component({
   selector: 'app-enigme',
@@ -11,52 +11,85 @@ import { categoryDescriptions, enigmaCards } from './enigma-data';
   imports: [CommonModule, IonButton, IonRouterLink, RouterLink],
   standalone: true,
 })
-export class EnigmeComponent {
+
+export class EnigmeComponent implements OnInit {
+
   // Get data from enigma-data.ts
   categoryDescriptions = categoryDescriptions;
-  cards = enigmaCards;
+  cards: EnigmaCard[] = enigmaCards;
 
   // Game state
   currentCardIndex: number = 0;
+  selectedCategory: string = 'all';
+  uniqueCategories: string[] = [];
+  filteredCards: EnigmaCard[] = [];
   gameStarted: boolean = false;
   isAnswerVisible: boolean = false;
 
-  constructor() {
-    this.shuffleCards();
+  constructor() {}
+ngOnInit(): void {
+    this.extractUniqueCategories();
+    this.filterCardsByCategory(this.selectedCategory);
+    this.setRandomCard();
   }
 
-  // Get current card
-  get currentCard() {
-    return this.cards[this.currentCardIndex];
+  extractUniqueCategories(): void {
+    this.uniqueCategories = Array.from(new Set(this.cards.map(card => card.category)));
   }
 
-  // Get description for current category
-  get categoryDescription() {
-    return this.categoryDescriptions[this.currentCard.category as keyof typeof this.categoryDescriptions];
+  filterCardsByCategory(category: string): void {
+    this.selectedCategory = category;
+    if (category === 'all') {
+      this.filteredCards = [...this.cards];
+    } else {
+      this.filteredCards = this.cards.filter(card => card.category === category);
+      if (this.filteredCards.length === 0) {
+        // If no cards in the selected category, default to all cards
+        this.filteredCards = [...this.cards];
+      }
+    }
+    this.setRandomCard();
   }
 
-  // Start new game
-  startGame() {
+  setRandomCard(): void {
+    if (this.filteredCards.length > 0) {
+      this.currentCardIndex = Math.floor(Math.random() * this.filteredCards.length);
+    } else {
+      // Fallback: If filteredCards is empty, use all cards
+      this.filteredCards = [...this.cards];
+      this.currentCardIndex = Math.floor(Math.random() * this.filteredCards.length);
+    }
+  }
+
+  get currentCard(): EnigmaCard {
+    // Since we ensure filteredCards is not empty, currentCard will never be undefined
+    return this.filteredCards[this.currentCardIndex];
+  }
+
+  get categoryDescription(): string | undefined {
+    const currentCategory = this.currentCard.category;
+    return this.categoryDescriptions[currentCategory];
+  }
+
+  startGame(): void {
     this.gameStarted = true;
     this.shuffleCards();
   }
 
-  // Move to next card
-  nextCard() {
-    this.currentCardIndex = (this.currentCardIndex + 1) % this.cards.length;
-    this.isAnswerVisible = false; // Hide answer when changing card
+  nextCard(): void {
+    this.currentCardIndex = (this.currentCardIndex + 1) % this.filteredCards.length;
+    this.isAnswerVisible = false;
   }
 
-  // Toggle answer visibility
-  toggleAnswer() {
+  toggleAnswer(): void {
     this.isAnswerVisible = !this.isAnswerVisible;
   }
 
-  // Shuffle cards array
-  private shuffleCards() {
-    for (let i = this.cards.length - 1; i > 0; i--) {
+  private shuffleCards(): void {
+    for (let i = this.filteredCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+      [this.filteredCards[i], this.filteredCards[j]] = [this.filteredCards[j], this.filteredCards[i]];
     }
+    this.setRandomCard(); // Set a new random card after shuffling
   }
 }

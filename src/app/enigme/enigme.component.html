@@ -14,6 +14,12 @@
 
     <!-- Game screen -->
     <div *ngIf="gameStarted" class="game-screen">
+      <!-- Category Selector -->
+      <div class="category-selector">
+        <button *ngFor="let category of uniqueCategories" (click)="filterCardsByCategory(category)" class="category-button">
+          {{ category }}
+        </button>
+      </div>
       <div class="category-description">
         {{ categoryDescription }}
       </div>
