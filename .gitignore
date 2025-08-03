@@ -9,6 +9,7 @@
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
+
 *.log
 log.txt
 
@@ -52,6 +53,8 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
+#Android
+android
 
 # Miscellaneous
 /.angular

@@ -32,6 +32,8 @@ export class CardComponent implements AfterViewInit {
     { category: 'Léger', question: 'Qui s’en sortirait le moins bien ?' },
     { category: 'Léger', question: 'Cite un film qui t’as bouleversé, fait vivre des émotions fortes.' },
     { category: 'Léger', question: 'Un film qui t’as ennuyé à mourir.' },
+    { category: 'Léger', question: 'Parles d\'un livre que tu as adoré !' },
+    { category: 'Léger', question: 'Un bouquin que tu aurai du lire.' },
 
     // Situation category
     { category: 'Situation', question: 'On te propose une activité un peu particulière que tu n’as jamais faite, qu’est ce que tu accepterai ?' },

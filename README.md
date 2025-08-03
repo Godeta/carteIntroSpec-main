@@ -1,12 +1,62 @@
 # carteIntroSpec
-Petit proto basique pour avoir une appli jeu de carte où je peux afficher différentes qustions selon certaines catégories. Test de Ionic pour le dev d'appli.
-## Test
-Installer npm + ionic
-Entrer : Ionic serve
-Pour l'appli mobile :
-ionic build
-ionic capacitor add android
-ionic capacitor sync
+
+Petit prototype de jeu de cartes permettant d’afficher différentes questions selon certaines catégories.  
+Ce projet utilise **Ionic** et **Capacitor** pour créer une application mobile (Android) ainsi qu'une version web.  
+Objectif : tester Ionic pour le développement d'applications hybrides.
+
+---
+
+## 🧰 Prérequis
+
+Assurez-vous d’avoir les outils suivants installés :
+
+- [Node.js (LTS recommandé)](https://nodejs.org) (v18.x ou v20.x)
+- npm (inclus avec Node.js)
+- Ionic CLI
+- Android Studio (pour les builds mobiles)
+
+### 🔎 Vérifier les versions installées :
+
+```bash
+node -v
+npm -v
+ionic -v
+java -version
+npx cap -v
+```
+
+Si certains outils sont manquants ou obsolètes, suivez les étapes ci-dessous pour les installer.
+
+⚙️ Installation des outils
+Node.js + npm
+Linux/macOS (via nvm) :
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc    # ou ~/.zshrc selon votre terminal
+nvm install --lts
+Windows :
+Télécharger et installer depuis https://nodejs.org
+
+Ionic CLI
+npm install -g @ionic/cli
+
+## Lancer l'application
+Web : 
+npm install        # Installer les dépendances du projet
+ionic serve        # Lancer l'application en mode dev dans le navigateur
+
+Mobile : 
+ionic build                            # Génère l'application web
+ionic capacitor add android            # Une seule fois
+ionic capacitor sync                   # Synchronise les fichiers avec le projet Android
+npx cap open android                   # Ouvre le projet dans Android Studio
+
+Nettoyage :
+npm uninstall -g ionic cordova
+npm cache clean --force
+
+## github web upload
+npm install --save-dev angular-cli-ghpages
+npx angular-cli-ghpages --dir=www
 
 ## to-do
 Engimes design a modifier pour telephone on voit pas tout
