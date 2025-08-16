@@ -277,4 +277,33 @@ export class CardComponent implements AfterViewInit {
     // Force view update
     this.changeDetectorRef.detectChanges();
   }
+  // Popup states
+  showRules = false;
+  showActionCard = false;
+
+  // Action card data
+  currentActionCard = { title: 'Default Action', description: 'This is the starting action.' };
+  availableActionCards = [
+    { title: 'Attack Boost', description: 'Double your attack this round.' },
+    { title: 'Shield Wall', description: 'Reduce damage by half for this round.' },
+    { title: 'Quick Draw', description: 'Play two cards instead of one.' }
+  ];
+
+  // Popup toggles
+  toggleRules() {
+    this.showRules = !this.showRules;
+  }
+
+  toggleActionCard() {
+    this.showActionCard = !this.showActionCard;
+  }
+
+  // Random action card
+  getRandomActionCard() {
+    const randomIndex = Math.floor(Math.random() * this.availableActionCards.length);
+    this.currentActionCard = this.availableActionCards[randomIndex];
+  }
+
 }
+
+  

@@ -1,6 +1,10 @@
 <header>
   <h1>Cards</h1>
   <button class="shiny-button" routerLink="/home">Back</button>
+  <div class="right">
+  <button class="icon-button" (click)="toggleRules()">❓</button>
+  <button class="icon-button" (click)="toggleActionCard()">⚡ Action</button>
+    </div>
 </header>
 
 <main>
@@ -23,4 +27,33 @@
       </div>
     </div>
   </div>
+
+  <!-- Rules Popup -->
+<div class="popup" *ngIf="showRules">
+  <div class="popup-content">
+    <button class="close-button" (click)="toggleRules()">✖</button>
+    <h2>Game Rules</h2>
+    <p>Here you explain the rules of the game clearly and simply.</p>
+  </div>
+</div>
+
+<!-- Action Card Popup -->
+<div class="popup" *ngIf="showActionCard">
+  <div class="popup-content action-card">
+    <button class="close-button" (click)="toggleActionCard()">✖</button>
+    <div class="action-card-sections">
+      <div class="classic">
+        <h3>Classic Action Card</h3>
+        <p>This action never changes.</p>
+      </div>
+      <div class="random">
+        <h3>{{ currentActionCard.title }}</h3>
+        <p>{{ currentActionCard.description }}</p>
+        <button class="shiny-button" (click)="getRandomActionCard()">New Random Card</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </main>
