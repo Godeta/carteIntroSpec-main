@@ -205,7 +205,8 @@ transition: transform 0.3s ease-out;
   border: none;
   background-color: #007bff;  /* blue circle */
   color: #2e0d0d;                /* white icon/text */
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: bolder;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -289,4 +290,20 @@ header .right {
   display: flex;
   gap: 10px;
   margin-left: auto;
+  margin-right: 10px;
+}
+
+.info-area {
+  margin-top: 20px;
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(0, 123, 255, 0.2); /* 🔹 half transparent blue */
+  border-radius: 8px;
+  text-align: center;
+}
+
+:host {
+  display: block;
+  overflow-y: auto;      /* 🔹 enables scroll when content is taller */
+  height: 100vh;         /* full screen but scrollable */
 }
