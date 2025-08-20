@@ -1,8 +1,8 @@
 {
-  "name": "carteIntrospec",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "pasapa-cartes-surtable",
+  "version": "0.0.2",
+  "author": "Arnaud GODET",
+  "homepage": "https://github.com/Godeta/carteIntroSpec-main",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -43,6 +43,7 @@
     "@angular/cli": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
     "@angular/language-service": "^19.0.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "6.2.0",
     "@ionic/angular-toolkit": "^12.0.0",
     "@types/jasmine": "~5.1.0",

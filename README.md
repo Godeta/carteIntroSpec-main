@@ -62,6 +62,11 @@ ionic capacitor add android            # Une seule fois
 ionic capacitor sync                   # Synchronise les fichiers avec le projet Android
 npx cap open android                   # Ouvre le projet dans Android Studio
 
+attention -> 
+"baseHref": "/carteIntroSpec-main/", //site web
+"baseHref": "./", //android
+npx @capacitor/assets generate --assetPath ressources/ # Genère les icones
+
 Nettoyage :
 npm uninstall -g ionic cordova
 npm cache clean --force
