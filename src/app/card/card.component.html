@@ -28,14 +28,32 @@
     </div>
   </div>
 
-  <!-- Rules Popup -->
+<!-- Règles du jeu -->
 <div class="popup" *ngIf="showRules">
   <div class="popup-content">
     <button class="close-button" (click)="toggleRules()">✖</button>
-    <h2>Game Rules</h2>
-    <p>Here you explain the rules of the game clearly and simply.</p>
+    <h2>Règles du jeu</h2>
+    <p>
+      Le jeu se déroule en plusieurs <strong>catégories de questions</strong> (7 au total), en commençant toujours par la catégorie <em>Léger</em>.
+    </p>
+    <ul>
+      <li>Un <strong>tour de jeu</strong> se termine lorsque tous les joueurs ont répondu à une carte de la catégorie en cours.</li>
+      <li>À la fin d’un tour, le groupe choisit de <em>rejouer dans la même catégorie</em> ou de <em>passer à la suivante</em>.</li>
+      <li>À chaque tour, on tire également une <strong>carte Action</strong> au hasard, ce qui nous laisse le choix au moment de jouer de suivre :
+        <ul>
+          <li>soit la carte “classique” → répondre à la question,</li>
+          <li>soit une <em>carte spéciale</em> →  il faut réaliser une action / répondre d'un certaine façon</li>
+        </ul>
+      </li>
+      <li>Il est conseillé de terminer la partie par une carte de la catégorie <em>Ensemble</em>, même si vous arrêtez avant d’avoir joué toutes les catégories.</li>
+    </ul>
+    <p>
+      Le but est d' <strong>échanger et discuter</strong>.
+      Donc laissez-vous aller : digressez, sortez du sujet, parlez de tout et de rien !
+    </p>
   </div>
 </div>
+
 
 <!-- Action Card Popup -->
 <div class="popup" *ngIf="showActionCard">
@@ -43,8 +61,8 @@
     <button class="close-button" (click)="toggleActionCard()">✖</button>
     <div class="action-card-sections">
       <div class="classic">
-        <h3>Classic Action Card</h3>
-        <p>This action never changes.</p>
+        <h3>Jeu classique</h3>
+        <p>Tu réponds à la question, les autres s’expriment / tu peux leur poser la question</p>
       </div>
       <div class="random">
         <h3>{{ currentActionCard.title }}</h3>

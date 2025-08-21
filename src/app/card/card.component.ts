@@ -171,7 +171,7 @@ export class CardComponent implements AfterViewInit {
       Ethique: '#ccccff', // red
       Futur: '#ffcccb', // pink
       Ensemble: '#ffebcc', // blue
-      
+
       // Add more colors for other categories
     };
     return colors[this.currentCard.category] || '#ffffff';
@@ -216,15 +216,15 @@ export class CardComponent implements AfterViewInit {
       onEnd: (ev) => {
         // Remove the swiping class to re-enable transitions
         this.cardElement.nativeElement.classList.remove('swiping');
-        
+
         const swipeThreshold = 100; // Minimum distance for a swipe to count
-        
+
         // Check if swipe was long enough
         if (Math.abs(ev.deltaX) >= swipeThreshold) {
           if (ev.deltaX > 0) { // Swiped right
             console.log('Swiping right to previous card');
             this.cardElement.nativeElement.classList.add('card-exit-right');
-            
+
             // Wait for animation to complete before changing card
             setTimeout(() => {
               console.log('Swiping change !!! to previous card');
@@ -236,7 +236,7 @@ export class CardComponent implements AfterViewInit {
           } else { // Swiped left
             console.log('Swiping left to next card');
             this.cardElement.nativeElement.classList.add('card-exit-left');
-            
+
             setTimeout(() => {
               console.log('Swiping change !!! to next card');
               this.nextCard();
@@ -281,13 +281,75 @@ export class CardComponent implements AfterViewInit {
   showRules = false;
   showActionCard = false;
 
-  // Action card data
-  currentActionCard = { title: 'Default Action', description: 'This is the starting action.' };
-  availableActionCards = [
-    { title: 'Attack Boost', description: 'Double your attack this round.' },
-    { title: 'Shield Wall', description: 'Reduce damage by half for this round.' },
-    { title: 'Quick Draw', description: 'Play two cards instead of one.' }
-  ];
+// Action card data
+currentActionCard = {
+  title: 'Action par défaut',
+  description: 'Ceci est l’action de départ.'
+};
+
+availableActionCards = [
+  {
+    title: 'Questions enchaînées',
+    description: 'Commence ta réponse en partant de la réponse du joueur précédent.'
+  },
+  {
+    title: 'Réponses en 30 secondes',
+    description: 'Réponds en 30s à une liste de questions créées par les joueurs (ex : ton 2ème prénom, ton avant-dernier repas, l’âge de ta maman...).'
+  },
+  {
+    title: 'Détail pour un autre',
+    description: 'Un joueur répond sans détail, tu complètes en expliquant sa façon de penser aux autres.'
+  },
+  {
+    title: 'Qualifier la réponse',
+    description: 'Juge la réponse selon certains critères (touchant, drôle, étonnant...).'
+  },
+  {
+    title: 'Petite histoire',
+    description: 'Invente une courte histoire incluant ta réponse (fable, short, nouvelle...).'
+  },
+  {
+    title: 'Réponse anonyme',
+    description: 'Écris ta réponse, les autres doivent deviner qui est l’auteur.'
+  },
+  {
+    title: 'Mot imposé',
+    description: 'Place un mot imposé dans ta réponse.'
+  },
+  {
+    title: 'Réponds pour un autre',
+    description: 'Réponds à la place d’un joueur, puis il explique son vrai avis.'
+  },
+  {
+    title: 'Jeu de rôle collectif',
+    description: 'Chaque joueur choisit une célébrité ou un personnage connu. Pendant le tour, chacun répond dans son rôle. À la fin, on devine les personnages.'
+  },
+  {
+    title: 'Invente une question',
+    description: 'Propose une nouvelle question sur le thème en cours.'
+  },
+  {
+    title: 'Vérité ou inverse',
+    description: 'Réponds soit sincèrement, soit à l’inverse de ce que tu penses. Les autres doivent deviner.'
+  },
+  {
+    title: 'Valeur secrète',
+    description: 'Choisis un chiffre (1–10). Réponds en construisant une situation avec ce chiffre. Les autres doivent deviner lequel c’était.'
+  },
+  {
+    title: 'J’ai déjà / Je n’ai jamais',
+    description: 'Transforme la question en une phrase “J’ai déjà... / Je n’ai jamais...”. Essaie d’être le seul ou presque à l’avoir vécu.'
+  },
+  {
+    title: 'Choix collectif ou individuel',
+    description: 'Choisis de poser la question à une seule personne, ou demande à tous les autres d’y répondre collectivement pour quelqu’un.'
+  },
+  {
+    title: 'Les 5 couleurs',
+    description: 'Choisis une façon de répondre : 🔴 Relation (parle comme à un ami proche, compliments, gestes) 🟢 Action (mime, bouge) 🔵 Clarté (réflexion profonde) 🟡 Joie (théâtral, joyeux) ⚪ Paix (chuchote ou parle lentement).'
+  }
+];
+
 
   // Popup toggles
   toggleRules() {
@@ -306,4 +368,3 @@ export class CardComponent implements AfterViewInit {
 
 }
 
-  
