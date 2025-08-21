@@ -138,7 +138,7 @@ npm cache clean --force
 
 ```bash
 npm install --save-dev angular-cli-ghpages
-npx angular-cli-ghpages --dir=www
+npx angular-cli-ghpages --dir=www/browser
 ```
 
 ## 📋 To-Do

@@ -1,5 +1,6 @@
 <header>
-  <h1>CarteIntroSpec</h1>
+  <h1>Pasapa</h1>
+  <h2 style="text-align: center;"> cartes surtables</h2>
 </header>
 
 <main>
@@ -12,18 +13,18 @@
           <span class="star"></span>
           Cartes d'Introspection
         </div>
-        
+
         <div class="shiny-button fun-button" routerLink="/fun">
           Jeux d'Ambiance
         </div>
-        
+
         <div class="shiny-button enigma-button" routerLink="/enigme">
           Énigmes
         </div>
         <button class="shiny-button secondary" (click)="toggleOptions()">Options</button>
         <button class="shiny-button info" (click)="toggleInfo()">Infos</button>
       </div>
-      
+
       <div class="options-panel" *ngIf="showOptions">
         <h2>Options</h2>
         <div class="option-item">
@@ -39,9 +40,9 @@
     <!-- Info Panel -->
     <div class="info-panel" [class.active]="showInfo">
       <button class="close-button" (click)="toggleInfo()">×</button>
-      
+
       <div class="info-section">
-        <h2>Qu'est-ce que CarteIntroSpec ?</h2>
+        <h2>Qu'est-ce que Pasapa ?</h2>
         <p>Cette appli est faite pour supporter le jeu que vous pouvez télécharger et imprimer librement. Le principe est d'avoir un support pour lancer facilement des discussions chouettes ! Idéal entre proches ou nouvelles connaissances, il s’utilise n’importe où (en voiture, en balade, autour d’un repas) et s’adapte à tous les contextes (discu rapide, plus profonde, faire une partie complète...)</p>
       </div>
 
@@ -64,7 +65,7 @@
     <footer class="credits">
       <p>Créé par Arnaud GODET, Janvier 2025</p>
       <p> Mis à jour début Août 2025</p>
-      <p class="version">Version 1.0.1</p>
+      <p class="version">Version 1.3</p>
     </footer>
   </div>
 </main>

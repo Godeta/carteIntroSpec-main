@@ -1,5 +1,5 @@
 <header>
-  <h1>Cards</h1>
+  <h1>Pasapa</h1>
   <button class="shiny-button" routerLink="/home">Back</button>
   <div class="right">
   <button class="icon-button" (click)="toggleRules()">❓</button>
@@ -9,11 +9,16 @@
 
 <main>
   <div class="category-selector">
+    <span class="cards-played">Nombre de cartes jouées: {{ cardsPlayed }}</span>
     <label for="category">Select Category:</label>
     <select id="category" (change)="onCategoryChange($event)">
       <option value="all">All</option>
       <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
     </select>
+  </div>
+  
+  <div class="action-info">
+    <p>Action du tour : <span class="classique">classique</span> ou <span class="action-title">{{ currentActionCard.title }}</span></p>
   </div>
 
   <div class="card-container">
@@ -25,6 +30,7 @@
           <span>Question suivante</span>
         </button>
       </div>
+      <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
     </div>
   </div>
 
@@ -77,5 +83,11 @@
 </main>
 
 <div class="info-area">
-  <p>This is your extra information area below the cards.</p>
+  <h3>Cartes jouées</h3>
+  <div class="played-cards">
+    <span *ngFor="let cardName of playedCardNames; let i = index" class="card-name">
+      {{ cardName }}<span *ngIf="i < playedCardNames.length - 1">, </span>
+    </span>
+    <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
+  </div>
 </div>
