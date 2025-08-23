@@ -359,6 +359,551 @@ header .right {
 
 :host {
   display: block;
-  overflow-y: auto;      /* 🔹 enables scroll when content is taller */
-  height: 100vh;         /* full screen but scrollable */
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.player-setup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #333333;
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+  
+  .back-button-setup {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(45deg, #2196F3, #21CBF3);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333333;
+  }
+}
+
+.next-turn, .game-end {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #333333;
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+  
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333333;
+  }
+}
+
+.player-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 400px;
+  
+  .player-input {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    
+    input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #ffffff;
+      color: #333333;
+      
+      &:focus {
+        outline: none;
+        border-color: #2196F3;
+      }
+    }
+    
+    button {
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      font-size: 18px;
+      
+      &:hover {
+        background: #cc3333;
+      }
+    }
+  }
+}
+
+.game-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.game-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  text-align: center;
+  width: 100%;
+  
+  .game-title {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+    background: transparent;
+  }
+}
+
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(33, 150, 243, 0.1);
+  position: relative;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .left-buttons {
+    display: flex;
+    gap: 10px;
+    
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+    
+    .control-button {
+      background: linear-gradient(45deg, #2196F3, #21CBF3);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 15px;
+      font-size: 12px;
+      cursor: pointer;
+      
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+  }
+  
+  .center-info {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    @media (max-width: 768px) {
+      position: static;
+      transform: none;
+      order: 2;
+    }
+    
+    p {
+      margin: 2px 0;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .info-value {
+      font-weight: bold;
+    }
+    
+    .category-color {
+      color: #4CAF50; /* Green for category */
+    }
+    
+    .player-name {
+      font-weight: bold;
+      color: #2196F3; /* Blue for player name */
+    }
+  }
+  
+  .right-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    
+    @media (max-width: 768px) {
+      align-items: center;
+      order: 3;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+      
+      .classique {
+        font-weight: bold;
+        color: #2196F3;
+      }
+      
+      .action-title {
+        font-weight: bold;
+        color: #9c27b0;
+      }
+    }
+    
+    .action-icons {
+      display: flex;
+      gap: 5px;
+      
+      .icon-button {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.add-player, .start-game, .continue-btn, .home-btn {
+  background: linear-gradient(45deg, #2196F3, #21CBF3);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+
+
+.dark-theme {
+  background: #1a1a1a !important;
+  
+  :host {
+    background: #1a1a1a !important;
+  }
+  
+  header {
+    background: #1a1a1a !important;
+    
+    h1 {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+  }
+  
+  .card {
+    background: #2d2d2d !important;
+    color: #ffd700 !important;
+    
+    .category-badge {
+      background: rgba(255, 215, 0, 0.2) !important;
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+    
+    .card-content {
+      color: #ffd700 !important;
+      
+      h2 {
+        color: #ffd700 !important;
+        font-weight: bold !important;
+      }
+    }
+    
+    .next-button {
+      background: linear-gradient(45deg, #ffd700, #ffeb3b) !important;
+      color: #1a1a1a !important;
+      font-weight: bold !important;
+    }
+  }
+  
+  .category-selector {
+    color: #ffd700 !important;
+    
+    label {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+    
+    select {
+      background: #2d2d2d !important;
+      color: #ffd700 !important;
+      border-color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+    
+    .cards-played {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+  }
+  
+  .action-info {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border-left-color: #ffd700 !important;
+    
+    p {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+    
+    .classique, .action-title {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+  }
+  
+  .popup {
+    .popup-content {
+      background: #2d2d2d !important;
+      color: #ffd700 !important;
+      
+      * {
+        color: #ffd700 !important;
+        font-weight: bold !important;
+      }
+    }
+    
+    .close-button {
+      color: #ffd700 !important;
+    }
+  }
+  
+  .info-area {
+    background: rgba(255, 215, 0, 0.2) !important;
+    color: #ffd700 !important;
+    font-weight: bold !important;
+  }
+  
+  .icon-button {
+    background: #ffd700 !important;
+    color: #1a1a1a !important;
+    font-weight: bold !important;
+    
+    &:hover {
+      background: #ffeb3b !important;
+    }
+  }
+  
+  .action-card-sections {
+    .classic, .random {
+      background: #2d2d2d !important;
+      color: #ffd700 !important;
+      
+      * {
+        color: #ffd700 !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+  
+  .player-setup, .next-turn, .game-end {
+    background: #1a1a1a !important;
+    
+    h2 {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+    
+    .player-input input {
+      background: #2d2d2d !important;
+      color: #ffd700 !important;
+      border-color: #ffd700 !important;
+      
+      &::placeholder {
+        color: #ffeb3b !important;
+      }
+    }
+    
+    p {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
+  }
+  
+  .game-screen {
+    background: #1a1a1a !important;
+    
+    .game-header {
+      background: transparent !important;
+      
+      .game-title {
+        color: #ffd700 !important;
+        font-weight: bold !important;
+        background: transparent !important;
+      }
+    }
+    
+    .game-controls {
+      background: rgba(255, 215, 0, 0.1) !important;
+      
+      .center-info {
+        p {
+          color: #ffd700 !important;
+          font-weight: bold !important;
+        }
+        
+        .info-value {
+          color: #ffd700 !important;
+          font-weight: bold !important;
+        }
+        
+        .category-color {
+          color: #4CAF50 !important;
+        }
+        
+        .player-name {
+          color: #ffd700 !important;
+          font-weight: bold !important;
+        }
+      }
+      
+      .right-actions p {
+        color: #ffd700 !important;
+        font-weight: bold !important;
+        
+        .classique {
+          color: #ffd700 !important;
+        }
+        
+        .action-title {
+          color: #e1bee7 !important;
+        }
+      }
+    }
+  }
+}
+
+.libre-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(33, 150, 243, 0.1);
+  
+  .left-buttons {
+    display: flex;
+    gap: 10px;
+    
+    .control-button {
+      background: linear-gradient(45deg, #2196F3, #21CBF3);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 15px;
+      font-size: 12px;
+      cursor: pointer;
+      
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+  }
+  
+  .center-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    
+    .cards-played {
+      font-weight: 600;
+      color: #2196F3;
+      font-size: 14px;
+    }
+    
+    label {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    select {
+      padding: 8px 15px;
+      border-radius: 15px;
+      border: 2px solid #ddd;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+  
+  .right-icons {
+    display: flex;
+    gap: 5px;
+    
+    .icon-button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="!showPlayerSetup">
   <h1>Pasapa</h1>
   <button class="shiny-button" routerLink="/home">Back</button>
   <div class="right">
@@ -8,29 +8,107 @@
 </header>
 
 <main>
-  <div class="category-selector">
-    <span class="cards-played">Nombre de cartes jouées: {{ cardsPlayed }}</span>
-    <label for="category">Select Category:</label>
-    <select id="category" (change)="onCategoryChange($event)">
-      <option value="all">All</option>
-      <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
-  
-  <div class="action-info">
-    <p>Action du tour : <span class="classique">classique</span> ou <span class="action-title">{{ currentActionCard.title }}</span></p>
+  <!-- Player Setup Screen -->
+  <div *ngIf="showPlayerSetup" class="player-setup">
+    <button class="back-button-setup" routerLink="/home">← Retour au menu</button>
+    <h2>Configuration des joueurs</h2>
+    <div class="player-inputs">
+      <div *ngFor="let player of players; let i = index; trackBy: trackByIndex" class="player-input">
+        <input 
+          [(ngModel)]="players[i]" 
+          [id]="'player-' + i"
+          placeholder="Nom du joueur {{ i + 1 }}"
+          (input)="updatePlayer(i, $event)">
+        <button (click)="removePlayer(i)" *ngIf="players.length > 2">×</button>
+      </div>
+    </div>
+    <button (click)="addPlayer()" class="add-player" [disabled]="players.length >= 11">Ajouter un joueur</button>
+    <button (click)="startGameMode()" class="start-game" [disabled]="!canStartGame()">Commencer le jeu</button>
   </div>
 
-  <div class="card-container">
-    <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
-      <div class="category-badge">{{ currentCard.category }}</div>
-      <div class="card-content">
-        <h2>{{ currentCard.question }}</h2>
-        <button class="shiny-button next-button" (click)="nextCard()">
-          <span>Question suivante</span>
-        </button>
+  <!-- Next Turn Screen -->
+  <div *ngIf="showNextTurn" class="next-turn">
+    <h2>Tour suivant !</h2>
+    <p>Catégorie suivante: {{ gameCategories[currentCategoryIndex + 1] }}</p>
+    <button (click)="nextTurn()" class="continue-btn">Continuer</button>
+  </div>
+
+  <!-- Game End Screen -->
+  <div *ngIf="showGameEnd" class="game-end">
+    <h2>Fin de partie</h2>
+    <p>Félicitations ! Vous avez terminé toutes les catégories.</p>
+    <button routerLink="/home" class="home-btn">Retour au menu</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div *ngIf="gameStarted && !showNextTurn && !showGameEnd" class="game-screen">
+    <header class="game-header">
+      <h1 class="game-title">Pasapa</h1>
+    </header>
+    
+    <div class="libre-controls" *ngIf="gameMode === 'libre'">
+      <div class="left-buttons">
+        <button class="control-button" routerLink="/home">Menu</button>
+        <button class="control-button" (click)="resetLibreMode()">Reset</button>
       </div>
-      <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
+      
+      <div class="center-selector">
+        <span class="cards-played">Cartes jouées: {{ cardsPlayed }}</span>
+        <label for="category">Catégorie: </label>
+        <select id="category" (change)="onCategoryChange($event)">
+          <option value="all">Toutes</option>
+          <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+      
+      <div class="right-icons">
+        <button class="icon-button" (click)="toggleRules()">❓</button>
+        <button class="icon-button" (click)="toggleActionCard()">⚡</button>
+      </div>
+    </div>
+    
+    <div class="game-controls" *ngIf="gameMode === 'jeu'">
+      <div class="left-buttons">
+        <button class="control-button" routerLink="/home">Menu</button>
+        <button class="control-button" (click)="restartGame()">Restart</button>
+      </div>
+      
+      <div class="center-info">
+        <p><strong>Tour </strong> <span class="info-value">{{ currentTurn }}</span> - <strong>Catégorie: </strong> <span class="info-value category-color">{{ currentCategory }}</span></p>
+        <p><strong>Joueur actuel: </strong> <span class="player-name">{{ currentPlayer }}</span></p>
+        <p>Cartes jouées ce tour: {{ cardsPlayedThisTurn }}/{{ totalCardsPerTurn }}</p>
+      </div>
+      
+      <div class="right-actions">
+        <p>Action du tour : <span class="classique">classique</span> ou <span class="action-title">{{ currentActionCard.title }}</span></p>
+        <div class="action-icons">
+          <button class="icon-button" (click)="toggleRules()">❓</button>
+          <button class="icon-button" (click)="toggleActionCard()">⚡</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
+        <div class="category-badge">{{ currentCard.category }}</div>
+        <div class="card-content">
+          <h2>{{ currentCard.question }}</h2>
+          <button class="shiny-button next-button" (click)="nextCard()">
+            <span>Question suivante</span>
+          </button>
+        </div>
+        <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
+      </div>
+    </div>
+    
+    <div class="info-area">
+      <h3>Cartes jouées</h3>
+      <div class="played-cards">
+        <span *ngFor="let cardName of playedCardNames; let i = index" class="card-name">
+          {{ cardName }}<span *ngIf="i < playedCardNames.length - 1">, </span>
+        </span>
+        <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
+      </div>
     </div>
   </div>
 
@@ -82,12 +160,4 @@
 
 </main>
 
-<div class="info-area">
-  <h3>Cartes jouées</h3>
-  <div class="played-cards">
-    <span *ngFor="let cardName of playedCardNames; let i = index" class="card-name">
-      {{ cardName }}<span *ngIf="i < playedCardNames.length - 1">, </span>
-    </span>
-    <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
-  </div>
-</div>
+

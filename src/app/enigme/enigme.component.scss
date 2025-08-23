@@ -4,34 +4,52 @@
   background-image: 
     url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4b483' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"),
     linear-gradient(45deg, #f4e4bc 0%, #e6d5b8 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  padding: 10px;
+  overflow-y: auto;
+  
+  @media (max-width: 768px) {
+    padding: 5px;
+  }
 }
 
 .card-container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding-top: 60px;
+  
+  @media (max-width: 768px) {
+    padding-top: 70px;
+    max-width: 100%;
+  }
 }
 .category-selector {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 8px;
+  margin: 15px 0;
   flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    gap: 5px;
+    margin: 10px 0;
+  }
 }
 
 .category-button {
-  padding: 10px 20px;
-  background-color: #5c4d3c; /* Gray background */
+  padding: 8px 16px;
+  background-color: #5c4d3c;
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   transition: background-color 0.3s;
+  
+  @media (max-width: 768px) {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
 .category-button:hover {
@@ -47,34 +65,51 @@
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid #d4b483;
   border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
   font-style: italic;
   color: #5c4d3c;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
 }
 
 .scroll {
   background: #f8ecd4;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   position: relative;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
   
   &::before, &::after {
     content: '';
     position: absolute;
-    height: 30px;
+    height: 20px;
     width: 100%;
     left: 0;
     background: repeating-linear-gradient(
       45deg,
       transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.1) 10px,
-      rgba(0, 0, 0, 0.1) 20px
+      transparent 8px,
+      rgba(0, 0, 0, 0.1) 8px,
+      rgba(0, 0, 0, 0.1) 16px
     );
+    
+    @media (max-width: 768px) {
+      height: 15px;
+    }
   }
   
   &::before {
@@ -89,41 +124,62 @@
 .card {
   background: #fff9eb;
   border-radius: 8px;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
+  
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
   
   h2 {
     color: #5c4d3c;
-    font-size: 1.8rem;
-    margin: 20px 0;
+    font-size: 1.4rem;
+    margin: 15px 0;
     line-height: 1.4;
+    
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
   }
 }
 
 .category-badge {
   background: #d4b483;
   color: #5c4d3c;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 20px;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: bold;
+  font-size: 14px;
+  
+  @media (max-width: 768px) {
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
   
   .category-icon {
-    margin-right: 8px;
+    margin-right: 6px;
   }
 }
 
 .enigma-button {
   background: linear-gradient(45deg, #d4b483, #c4a473);
   border: none;
-  padding: 15px 30px;
+  padding: 12px 24px;
   border-radius: 25px;
   color: #5c4d3c;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
   
   &:hover {
     transform: translateY(-2px);
@@ -133,7 +189,11 @@
   span {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    
+    @media (max-width: 768px) {
+      gap: 6px;
+    }
   }
 }
 
@@ -160,16 +220,31 @@
 .start-screen {
   text-align: center;
   color: #5c4d3c;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
   
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
   }
   
   .start-button {
-    font-size: 1.5rem;
-    padding: 20px 40px;
+    font-size: 1.2rem;
+    padding: 16px 32px;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 14px 28px;
+    }
   }
 }
 .answer-section {
@@ -190,19 +265,25 @@
   background: rgba(255, 255, 255, 0.9);
   border: 2px dashed #d4b483;
   border-radius: 10px;
-  padding: 15px;
-  margin: 10px 0;
+  padding: 12px;
+  margin: 8px 0;
   color: #5c4d3c;
-  font-size: 1.1rem;
+  font-size: 1rem;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease;
+  line-height: 1.4;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
   
   &.visible {
     opacity: 1;
     max-height: 500px;
-    margin: 15px 0;
+    margin: 12px 0;
   }
 }
 

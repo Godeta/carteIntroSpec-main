@@ -1,0 +1,38 @@
+<main class="warhammer-background">
+  <div class="header-bar">
+    <button class="back-button" routerLink="/home">↩️ Menu</button>
+    <h1 class="game-title">Warhammer</h1>
+  </div>
+
+  <div class="game-container">
+    <canvas #gameCanvas class="game-canvas"></canvas>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="score">Score: {{ score }}</div>
+      <div class="timer">Time: {{ elapsedTime }}s</div>
+      <div class="life">❤️ {{ player?.pv }}</div>
+    </div>
+
+    <!-- Death screen -->
+    <div class="death-screen" *ngIf="isDead">
+      <p>A fatal error has occurred.</p>
+      <p>Score: {{ score }} Time Survived: {{ elapsedTime }}s</p>
+      <button routerLink="/home">Return to Menu</button>
+    </div>
+  </div>
+
+  <div class="controls" *ngIf="!isDead">
+    <!-- Joystick -->
+    <div class="joystick-container" #joystickArea>
+      <div class="joystick-base"></div>
+      <div class="joystick-knob" #joystickKnob></div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="btn-a" (pointerdown)="attackMelee()">A</button>
+      <button class="btn-b" (pointerdown)="shoot()">B</button>
+    </div>
+  </div>
+</main>

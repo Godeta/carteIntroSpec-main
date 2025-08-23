@@ -1,15 +1,14 @@
-<header>
-  <h1>Pasapa</h1>
-  <h2 style="text-align: center;"> cartes surtables</h2>
-</header>
-
 <main>
   <div id="container" [class.info-active]="showInfo">
     <!-- Main Content -->
     <div class="game-intro" [class.hide]="showInfo">
-      <p class="tagline">Explorez, Réfléchissez, Découvrez-vous</p>
+      <header class="title-section">
+        <h1>Pasapa</h1>
+        <h2>cartes surtables</h2>
+        <p class="tagline">Explorez, Réfléchissez, Découvrez-vous</p>
+      </header>
       <div class="button-container">
-        <div class="shiny-button card-button" routerLink="/card">
+        <div class="shiny-button card-button" (click)="goToCard()">
           <span class="star"></span>
           Cartes d'Introspection
         </div>
@@ -31,8 +30,19 @@
           <label>Thème:</label>
           <select [(ngModel)]="selectedTheme" (change)="updateTheme(selectedTheme)">
             <option value="light">Clair</option>
-            <option value="dark">Sombre</option>
+            <option value="dark">Obscur</option>
           </select>
+        </div>
+        <div class="option-item">
+          <label>Mode:</label>
+          <select [(ngModel)]="gameMode" (change)="updateGameMode(gameMode)">
+            <option value="jeu">Jeu</option>
+            <option value="libre">Libre</option>
+          </select>
+        </div>
+        <div class="warhammer-button" *ngIf="selectedTheme === 'dark'">
+          <br/>
+          <button class="button secondary" routerLink="/warhammer">Warhammer</button>
         </div>
       </div>
     </div>
@@ -65,7 +75,7 @@
     <footer class="credits">
       <p>Créé par Arnaud GODET, Janvier 2025</p>
       <p> Mis à jour début Août 2025</p>
-      <p class="version">Version 1.3</p>
+      <p class="version">Version 1.5</p>
     </footer>
   </div>
 </main>

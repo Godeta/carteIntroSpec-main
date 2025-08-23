@@ -79,28 +79,93 @@
 }
 
 .dark-theme {
-  --background-color: #121212;
-  --surface-color: #1e1e1e;
-  --text-color: #ffffff;
-  --heading-color: #e0e0e0;
-  --primary-color: #90caf9;
-  --secondary-color: #b0bec5;
+  --background-color: #1a1a1a;
+  --surface-color: #2d2d2d;
+  --text-color: #ffd700;
+  --heading-color: #ffd700;
+  --primary-color: #ffd700;
+  --secondary-color: #ffeb3b;
+
+  * {
+    color: #ffd700 !important;
+    font-weight: bold !important;
+  }
 
   .shiny-button {
-    &.primary {
-      background: linear-gradient(45deg, #90caf9, #64b5f6);
+    color: #1a1a1a !important;
+    font-weight: bold !important;
+    
+    &.card-button {
+      background: linear-gradient(45deg, #ffd700, #ffeb3b) !important;
+      color: #1a1a1a !important;
+    }
+    
+    &.fun-button {
+      background: linear-gradient(45deg, #ff9800, #ff5722) !important;
+      color: #1a1a1a !important;
+    }
+    
+    &.enigma-button {
+      background: linear-gradient(45deg, #8bc34a, #4caf50) !important;
+      color: #1a1a1a !important;
     }
     
     &.secondary {
-      background: linear-gradient(45deg, #b0bec5, #90a4ae);
+      background: linear-gradient(45deg, #616161, #424242) !important;
+      color: #ffd700 !important;
+    }
+    
+    &.info {
+      background: linear-gradient(45deg, #9c27b0, #673ab7) !important;
+      color: #ffd700 !important;
+    }
+  }
+
+  .options-panel {
+    background: #2d2d2d !important;
+    
+    select {
+      background: #1a1a1a !important;
+      color: #ffd700 !important;
+      border-color: #ffd700 !important;
     }
   }
 
   .info-panel {
+    background: #1a1a1a !important;
+    
     .info-section {
-      background: var(--surface-color);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      background: #2d2d2d !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5) !important;
     }
+  }
+
+  .card {
+    background: #2d2d2d !important;
+    
+    .category-badge {
+      background: rgba(255, 215, 0, 0.2) !important;
+      color: #ffd700 !important;
+    }
+  }
+
+  .category-selector select {
+    background: #2d2d2d !important;
+    color: #ffd700 !important;
+    border-color: #ffd700 !important;
+  }
+
+  .action-info {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border-left-color: #ffd700 !important;
+  }
+
+  .popup-content {
+    background: #2d2d2d !important;
+  }
+
+  .info-area {
+    background: rgba(255, 215, 0, 0.2) !important;
   }
 }
 

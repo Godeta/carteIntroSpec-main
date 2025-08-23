@@ -3,16 +3,34 @@ import { GestureController } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { IonButton, IonRouterLink } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  imports: [CommonModule, IonButton, IonRouterLink, RouterLink],
+  imports: [CommonModule, IonButton, IonRouterLink, RouterLink, FormsModule],
   standalone: true,
 })
 export class CardComponent implements AfterViewInit {
-  @ViewChild('cardElement') cardElement!: ElementRef;  // Get reference to the card element in the DOM
+  @ViewChild('cardElement') cardElement!: ElementRef;
+  
+  // Game mode properties
+  gameMode: string = 'Jeu';
+  players: string[] = [];
+  currentPlayerIndex: number = 0;
+  currentTurn: number = 1;
+  cardsPlayedThisTurn: number = 0;
+  gameCategories: string[] = ['Léger', 'Situation', 'Anecdote', 'Valeurs', 'Ethique', 'Futur', 'Ensemble'];
+  currentCategoryIndex: number = 0;
+  gameStarted: boolean = false;
+  showPlayerSetup: boolean = false;
+  showGameEnd: boolean = false;
+  showNextTurn: boolean = false;
+  
+  // Jeu mode deck management
+  jeuModeDeck: any[] = [];
+  jeuModeCardIndex: number = 0;
 
   cards = [
     // Léger category
@@ -156,25 +174,48 @@ export class CardComponent implements AfterViewInit {
     this.uniqueCategories = [...new Set(this.cards.map(card => card.category))];
     this.shuffleArray(this.cards);
     this.filteredCards = [...this.cards];
+    
+    // Check game mode from localStorage (Android compatible)
+    try {
+      this.gameMode = localStorage.getItem('gameMode') || 'jeu';
+    } catch (e) {
+      this.gameMode = 'jeu';
+    }
+    
+    console.log('Card component initialized with mode:', this.gameMode);
+    
+    if (this.gameMode === 'jeu') {
+      this.showPlayerSetup = true;
+      this.players = ['', ''];
+      console.log('Showing player setup');
+    } else {
+      this.gameStarted = true;
+      console.log('Starting game directly');
+    }
   }
 
   ngAfterViewInit() {
-    this.setupSwipeGestures();
+    if (this.cardElement) {
+      this.setupSwipeGestures();
+    }
   }
 
   get currentCard() {
+    if (this.gameMode === 'jeu' && this.jeuModeDeck.length > 0) {
+      return this.jeuModeDeck[this.jeuModeCardIndex] || this.jeuModeDeck[0];
+    }
     return this.filteredCards[this.currentCardIndex];
   }
 
   get currentCardColor() {
     const colors: { [key: string]: string } = { // Define index signature
       Léger: '#ccffcc', // green
-      Situation: '#ffcccb', // chartreuse
-      Anecdote: '#ffebcc', // yellow
-      Valeurs: '#e6ccff', // orange
-      Ethique: '#ccccff', // red
-      Futur: '#ffcccb', // pink
-      Ensemble: '#ffebcc', // blue
+      Situation: '#edf342ff', // chartreuse
+      Anecdote: '#faff2fff', // yellow
+      Valeurs: '#ff9c2fff', // orange
+      Ethique: '#ff342fff', // red
+      Futur: '#ff2f92ff', // pink
+      Ensemble: '#2f92ffff', // blue
 
       // Add more colors for other categories
     };
@@ -199,6 +240,10 @@ export class CardComponent implements AfterViewInit {
   }
 
   setupSwipeGestures() {
+    if (!this.cardElement?.nativeElement) {
+      return;
+    }
+    
     // Create a new gesture handler
     const gesture = this.gestureCtrl.create({
       el: this.cardElement.nativeElement, // Attach gesture to our card element
@@ -232,8 +277,8 @@ export class CardComponent implements AfterViewInit {
 
             // Wait for animation to complete before changing card
             setTimeout(() => {
-              console.log('Swiping change !!! to previous card');
-              this.previousCard();
+              console.log('Swiping change !!! to next card');
+              this.nextCard();
               this.cardElement.nativeElement.classList.remove('card-exit-right');
               // Force Angular to update the view - crucial for setTimeout
               this.changeDetectorRef.detectChanges();
@@ -243,8 +288,8 @@ export class CardComponent implements AfterViewInit {
             this.cardElement.nativeElement.classList.add('card-exit-left');
 
             setTimeout(() => {
-              console.log('Swiping change !!! to next card');
-              this.nextCard();
+              console.log('Swiping change !!! to previous card');
+              this.previousCard();
               this.cardElement.nativeElement.classList.remove('card-exit-left');
               // Force Angular to update the view
               this.changeDetectorRef.detectChanges();
@@ -261,17 +306,30 @@ export class CardComponent implements AfterViewInit {
   }
 
   nextCard() {
-    console.log('changing card !!!');
-    // Add current card name to played cards
     this.playedCardNames.push(this.currentCard.name);
-    // Calculate next index with wraparound
-    this.currentCardIndex = (this.currentCardIndex + 1) % this.filteredCards.length;
+    
+    if (this.gameMode === 'jeu') {
+      this.jeuModeCardIndex++;
+      this.cardsPlayedThisTurn++;
+      this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
+      
+      if (this.cardsPlayedThisTurn >= this.totalCardsPerTurn) {
+        if (this.currentCategoryIndex >= this.gameCategories.length - 1) {
+          this.showGameEnd = true;
+          return;
+        }
+        this.showNextTurn = true;
+        return;
+      }
+    } else {
+      this.currentCardIndex = (this.currentCardIndex + 1) % this.filteredCards.length;
+    }
+    
     this.cardsPlayed++;
+    
     if (this.cardElement) {
-      // Reset any leftover transform
       this.cardElement.nativeElement.style.transform = '';
     }
-    // Force view update
     this.changeDetectorRef.detectChanges();
   }
 
@@ -382,6 +440,114 @@ availableActionCards = [
     }
   }
 
+  // Game mode methods
+  trackByIndex(index: number): number {
+    return index;
+  }
+  
+  updatePlayer(index: number, event: any) {
+    this.players[index] = event.target.value;
+  }
+  
+  addPlayer() {
+    if (this.players.length < 11) {
+      this.players.push('');
+    }
+  }
+  
+  removePlayer(index: number) {
+    this.players.splice(index, 1);
+  }
+  
+  canStartGame(): boolean {
+    return this.players.filter(p => p.trim()).length >= 2;
+  }
+  
+  startGameMode() {
+    if (this.canStartGame()) {
+      this.players = this.players.filter(p => p.trim());
+      this.showPlayerSetup = false;
+      this.gameStarted = true;
+      this.selectedCategory = this.gameCategories[0];
+      
+      this.createJeuModeDeck();
+      this.getRandomActionCard();
+      
+      // Setup gestures after view updates
+      setTimeout(() => {
+        if (this.cardElement) {
+          this.setupSwipeGestures();
+        }
+      }, 100);
+    }
+  }
+  
+  nextTurn() {
+    this.currentTurn++;
+    this.cardsPlayedThisTurn = 0;
+    this.currentPlayerIndex = 0;
+    this.currentCategoryIndex++;
+    this.selectedCategory = this.gameCategories[this.currentCategoryIndex];
+    
+    if (this.gameMode === 'jeu') {
+      this.createJeuModeDeck();
+    } else {
+      this.filterCards();
+    }
+    
+    this.getRandomActionCard();
+    this.showNextTurn = false;
+  }
+  
+  get currentPlayer() {
+    return this.players[this.currentPlayerIndex];
+  }
+  
+  get currentCategory() {
+    return this.gameCategories[this.currentCategoryIndex];
+  }
+  
+  restartGame() {
+    this.currentTurn = 1;
+    this.cardsPlayedThisTurn = 0;
+    this.currentPlayerIndex = 0;
+    this.currentCategoryIndex = 0;
+    this.selectedCategory = this.gameCategories[0];
+    this.cardsPlayed = 0;
+    this.playedCardNames = [];
+    this.currentCardIndex = 0;
+    
+    this.players = ['', ''];
+    this.gameStarted = false;
+    this.showPlayerSetup = true;
+    this.showNextTurn = false;
+    this.showGameEnd = false;
+  }
+  
+  resetLibreMode() {
+    this.cardsPlayed = 0;
+    this.playedCardNames = [];
+    this.currentCardIndex = 0;
+    this.selectedCategory = 'all';
+    this.shuffleArray(this.cards);
+    this.filteredCards = [...this.cards];
+  }
+
+  get totalCardsPerTurn(): number {
+    return this.players.length < 4 ? this.players.length * 2 : this.players.length;
+  }
+  
+  // Create deck for jeu mode with exact number of cards needed
+  private createJeuModeDeck() {
+    const categoryCards = this.cards.filter(card => card.category === this.selectedCategory);
+    const neededCards = this.totalCardsPerTurn;
+    
+    // Shuffle and take only the number of cards needed
+    this.shuffleArray(categoryCards);
+    this.jeuModeDeck = categoryCards.slice(0, neededCards);
+    this.jeuModeCardIndex = 0;
+  }
+  
   // Shuffle array method
   private shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {

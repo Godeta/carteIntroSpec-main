@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadComponent: () => import('./enigme/enigme.component').then((m) => m.EnigmeComponent),
   },
   {
+    path: 'warhammer',
+    loadComponent: () => import('./warhammer/war.component').then((m) => m.WarComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
