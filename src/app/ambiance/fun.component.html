@@ -14,19 +14,22 @@
     </div>
 
     <!-- Game screen -->
-    <div *ngIf="gameStarted" class="card">
+    <div *ngIf="gameStarted" class="card" [ngClass]="{'event-card': isCurrentEvent}">
       <div class="cards-counter">
         {{ cardsPlayed + 1 }}/{{ maxCards }}
       </div>
       <div class="card-type">
-        <span class="party-emoji">🎉</span>
+        <span class="party-emoji" *ngIf="!isCurrentEvent">🎉</span>
+        <span class="event-emoji" *ngIf="isCurrentEvent">⚡</span>
         {{ currentCard.type }}
-        <span class="party-emoji">🎉</span>
+        <span class="party-emoji" *ngIf="!isCurrentEvent">🎉</span>
+        <span class="event-emoji" *ngIf="isCurrentEvent">⚡</span>
       </div>
       <div class="card-content">
         <h2>{{ currentCard.question }}</h2>
-        <button class="party-button" (click)="nextCard()">
-          <span>Carte Suivante 🎲</span>
+        <button class="party-button" [ngClass]="{'event-button': isCurrentEvent}" (click)="nextCard()">
+          <span *ngIf="!isCurrentEvent">Carte Suivante 🎲</span>
+          <span *ngIf="isCurrentEvent">Continuer ⚡</span>
         </button>
       </div>
     </div>

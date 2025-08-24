@@ -28,10 +28,16 @@
         <div class="card">
           <div class="category-badge">
             <span class="category-icon">
-              {{ currentCard.category === 'Logique' ? '🧩' : 
-                 currentCard.category === 'Antique' ? '📜' : 
-                 currentCard.category === 'Math' ? '🔢' : '📚' }}
+              {{
+                currentCard.category === 'Logique' ? '🧩' :
+                currentCard.category === 'Math' ? '🔢' :
+                currentCard.category === 'Devinette' ? '🤔' :
+                currentCard.category === 'Hors cadre / Marrant' ? '😜' :
+                currentCard.category === 'Casse-tête / Enquête' ? '🕵️‍♂️' :
+                '❓'
+              }}
             </span>
+
             {{ currentCard.category }}
           </div>
           <div class="card-content">

@@ -231,7 +231,7 @@ class Joystick {
   selector: 'app-war',
   templateUrl: './war.component.html',
   styleUrls: ['./war.component.scss'],
-  imports: [CommonModule, IonButton, IonRouterLink, RouterLink],
+  imports: [CommonModule, IonRouterLink, RouterLink],
   standalone: true,
 })
 //gestion du jeu

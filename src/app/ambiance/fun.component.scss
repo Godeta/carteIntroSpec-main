@@ -170,3 +170,27 @@
 .card {
   margin-top: 40px; // Add space for the counter
 }
+
+// Event card styling
+.event-card {
+  background: linear-gradient(145deg, #d32f2f, #f44336) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  
+  .card-type {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .event-emoji {
+    margin: 0 10px;
+    color: #ffeb3b;
+  }
+}
+
+.event-button {
+  background: linear-gradient(45deg, #ff5722, #e64a19) !important;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3) !important;
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4) !important;
+  }
+}
