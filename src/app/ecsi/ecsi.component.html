@@ -1,0 +1,188 @@
+<header *ngIf="!showPlayerSetup">
+  <h1>Roleplay débat</h1>
+  <button class="shiny-button" routerLink="/home">Back</button>
+  <div class="right">
+  <button class="icon-button" (click)="toggleRules()">❓</button>
+    </div>
+</header>
+
+<main>
+  <!-- Player Setup Screen -->
+  <div *ngIf="showPlayerSetup" class="player-setup">
+    <button class="back-button-setup" routerLink="/home">← Retour au menu</button>
+    <h2>Configuration des joueurs</h2>
+    <div class="player-inputs">
+      <div *ngFor="let player of players; let i = index; trackBy: trackByIndex" class="player-input">
+        <input 
+          [(ngModel)]="players[i]" 
+          [id]="'player-' + i"
+          placeholder="Nom du joueur {{ i + 1 }}"
+          (input)="updatePlayer(i, $event)">
+        <button (click)="removePlayer(i)" *ngIf="players.length > 2">×</button>
+      </div>
+    </div>
+    <button (click)="addPlayer()" class="add-player" [disabled]="players.length >= 11">Ajouter un joueur</button>
+    <button (click)="startGameMode()" class="start-game" [disabled]="!canStartGame()">Commencer le jeu</button>
+  </div>
+
+  <!-- Next Turn Screen -->
+  <div *ngIf="showNextTurn" class="next-turn">
+    <h2>Tour suivant !</h2>
+    <p>Catégorie suivante: {{ gameCategories[currentCategoryIndex + 1] }}</p>
+    <button (click)="nextTurn()" class="continue-btn">Continuer</button>
+  </div>
+
+  <!-- Game End Screen -->
+  <div *ngIf="showGameEnd" class="game-end">
+    <h2>Fin de partie</h2>
+    <p>Félicitations ! Vous avez terminé toutes les catégories.</p>
+    <button routerLink="/home" class="home-btn">Retour au menu</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div *ngIf="gameStarted && !showNextTurn && !showGameEnd" class="game-screen">
+    <header class="game-header">
+      <h1 class="game-title">Roleplay débat</h1>
+    </header>
+    
+    <div class="libre-controls" *ngIf="gameMode === 'libre'">
+      <div class="left-buttons">
+        <button class="control-button" routerLink="/home">Menu</button>
+        <button class="control-button" (click)="resetLibreMode()">Reset</button>
+      </div>
+      
+      <div class="center-selector">
+        <span class="cards-played">Cartes jouées: {{ cardsPlayed }}</span>
+        <label for="category">Catégorie: </label>
+        <select id="category" (change)="onCategoryChange($event)">
+          <option value="all">Toutes</option>
+          <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+      
+      <div class="right-icons">
+        <button class="icon-button" (click)="toggleRules()">❓</button>
+      </div>
+    </div>
+    
+    <div class="game-controls" *ngIf="gameMode === 'jeu'">
+      <div class="left-buttons">
+        <button class="control-button" routerLink="/home">Menu</button>
+        <button class="control-button" (click)="restartGame()">Restart</button>
+      </div>
+      
+      <div class="center-info">
+        <p><strong>Tour </strong> <span class="info-value">{{ currentTurn }}</span></p>
+        <p><strong>Temps restant: </strong> <span class="timer-value">{{ formattedTime }}</span></p>
+      </div>
+      
+      <div class="right-actions">
+        <div class="action-icons">
+          <button class="icon-button" (click)="toggleRules()">❓</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
+        <div class="category-badge">{{ currentCard.category }}</div>
+        <div class="card-content">
+          <h2>{{ currentCard.question }}</h2>
+          <div class="choice-buttons">
+            <button class="choice-btn strongly-against" (click)="selectChoice('--')">--</button>
+            <button class="choice-btn against" (click)="selectChoice('-')">-</button>
+            <button class="choice-btn neutral" (click)="selectChoice('0')">0</button>
+            <button class="choice-btn for" (click)="selectChoice('+')">+</button>
+            <button class="choice-btn strongly-for" (click)="selectChoice('++')">++</button>
+          </div>
+        </div>
+        <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
+      </div>
+    </div>
+    
+    <div class="info-area">
+      <h3>Rôles des joueurs</h3>
+      <div class="player-roles-grid">
+        <div *ngFor="let player of players" class="player-role-card" (click)="showPlayerRole(player)">
+          <div class="player-name">{{ player }}</div>
+          <div class="role-title">{{ playerRoles[player]?.roleTitle }}</div>
+        </div>
+      </div>
+      
+      <h3>Votes par catégorie</h3>
+      <div class="category-votes">
+        <div *ngFor="let category of uniqueCategories" class="category-vote">
+          <span class="category-name">{{ category }}:</span>
+          <span class="vote-counts">
+            <span class="vote-item">--: {{ categoryVotes[category]['--'] }}</span>
+            <span class="vote-item">-: {{ categoryVotes[category]['-'] }}</span>
+            <span class="vote-item">+: {{ categoryVotes[category]['+'] }}</span>
+            <span class="vote-item">++: {{ categoryVotes[category]['++'] }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Règles du jeu -->
+<div class="popup" *ngIf="showRules">
+  <div class="popup-content">
+    <button class="close-button" (click)="toggleRules()">✖</button>
+    <h2>🎲 Règles du jeu</h2>
+
+<h3>🔹 Objectif</h3>
+<p>
+  Ce jeu est un débat collaboratif où chaque joueur incarne un rôle. Ensemble, vous explorez des sujets de société, confrontez vos points de vue et tentez de trouver une position collective.
+</p>
+
+<h3>🧩 Étapes du jeu</h3>
+<ol>
+  <li><strong>Choisis ton personnage :</strong> Pioche une carte rôle. Tu peux incarner ce personnage librement, en suivant ses valeurs tout en y ajoutant ta touche personnelle.</li>
+  <li><strong>Pioche une carte débat :</strong> Elle contient une question liée à une catégorie (écologie, solidarité, travail, éthique…).</li>
+  <li><strong>Prépare tes arguments :</strong> Prenez 1 minute de réflexion individuelle pour formuler vos idées en lien avec votre rôle.</li>
+  <li><strong>Lancez le débat :</strong> Débattez pendant 10 minutes maximum (le timer est là pour garder le rythme, mais pas de stress si vous dépassez un peu).</li>
+  <li><strong>Décidez ensemble :</strong> À la fin du débat, évaluez la tendance du groupe : <em>Contre / Plutôt contre / Neutre / Plutôt pour / Pour</em>.</li>
+  <li><strong>Attribuez des points :</strong> Chaque position donne des points à la catégorie concernée. Par exemple :
+    <ul>
+      <li>Neutre = 2 points</li>
+      <li>Contre = 3 points</li>
+      <li>(Les barèmes peuvent varier selon les catégories)</li>
+    </ul>
+  </li>
+  <li><strong>Débrief rapide :</strong> Retournez la carte débat pour découvrir les infos au verso. Échangez sur ce que vous avez appris ou ressenti.</li>
+</ol>
+
+<h3>🏁 Fin de partie</h3>
+<p>
+  Une fois plusieurs débats joués, observez le score final par catégorie.<br/>
+  Discutez ensemble :
+</p>
+<ul>
+  <li>Comment avez-vous vécu votre rôle ?</li>
+  <li>Qu’est-ce qui vous a surpris ou challengé ?</li>
+  <li>Avez-vous changé d’avis sur certains sujets ?</li>
+</ul>
+
+  </div>
+</div>
+
+<!-- Role Popup -->
+<div class="popup" *ngIf="showRolePopup">
+  <div class="popup-content role-popup">
+    <button class="close-button" (click)="closeRolePopup()">✖</button>
+    <h3>{{ selectedPlayerRole.name }}</h3>
+    <h4>{{ selectedPlayerRole.role.roleTitle }}</h4>
+    <div [innerHTML]="selectedPlayerRole.role.roleDescription"></div>
+  </div>
+</div>
+
+<!-- Time Up Popup -->
+<div class="popup" *ngIf="showTimeUpPopup">
+  <div class="popup-content">
+    <button class="close-button" (click)="closeTimeUpPopup()">✖</button>
+    <h2>Temps dépassé pour ce tour !</h2>
+    <button class="shiny-button" (click)="closeTimeUpPopup()">Continuer</button>
+  </div>
+</div>
+
+</main>

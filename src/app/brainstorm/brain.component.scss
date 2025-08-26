@@ -1,0 +1,455 @@
+.brainstorm-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2e1a 0%, #1b4e2d 100%);
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.content-container {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: #90EE90;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  
+  .intro {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  
+  .main-text {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    text-align: center;
+    
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    
+    .emoji {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.3rem;
+      
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+    
+    h3 {
+      font-size: 1rem;
+      margin: 0.3rem 0;
+      color: #90EE90;
+      
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+      }
+    }
+    
+    .section-subtitle {
+      font-style: italic;
+      font-size: 0.85rem;
+      margin: 0.3rem 0;
+      color: #E0E0E0;
+      
+      @media (max-width: 768px) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  .brainstorm-button {
+    display: block;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+      padding: 8px 16px;
+    }
+  }
+}
+
+.card-type {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  
+  .party-emoji {
+    margin: 0 10px;
+  }
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  
+  h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.4;
+  }
+}
+
+.brainstorm-button {
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  min-width: 200px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.cards-container {
+  color: white;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  h3 {
+    margin: 0 0 10px 0;
+    color: #90EE90;
+    font-size: 1rem;
+  }
+  
+  p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+  }
+  
+  .keywords {
+    color: #E0E0E0;
+    font-style: italic;
+    font-size: 0.8rem;
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #2d2d2d;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  
+  h2 {
+    margin: 0 0 10px 0;
+    color: #90EE90;
+  }
+  
+  .popup-meta {
+    color: #E0E0E0;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .popup-section {
+    margin-bottom: 15px;
+    
+    h3 {
+      margin: 0 0 8px 0;
+      color: #90EE90;
+      font-size: 1rem;
+    }
+    
+    p {
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    
+    .example {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      white-space: pre-line;
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.challenge-section {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: #90EE90;
+    font-size: 1.1rem;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  
+  p {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.challenge-button {
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 10px 20px;
+  }
+}
+
+.challenge-display {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #FF6B35;
+  
+  p {
+    margin: 0;
+    font-style: italic;
+    color: #FFE4B5;
+    font-size: 0.95rem;
+    
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// Add some floating sparkles
+@for $i from 1 through 10 {
+  .party-background::before:nth-of-type(#{$i}) {
+    left: random(100) * 1%;
+    top: random(100) * 1%;
+    animation-delay: random(3) * -1s;
+  }
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.start-screen {
+  text-align: center;
+  color: white;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+  }
+  
+  .start-button {
+    font-size: 1.5rem;
+    padding: 20px 40px;
+  }
+}
+
+.cards-counter {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  color: white;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+// Update card styles for better visibility of the counter
+.card {
+  margin-top: 40px; // Add space for the counter
+}
+
+// Event card styling
+.event-card {
+  background: linear-gradient(145deg, #d32f2f, #f44336) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  
+  .card-type {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .event-emoji {
+    margin: 0 10px;
+    color: #ffeb3b;
+  }
+}
+
+.event-button {
+  background: linear-gradient(45deg, #ff5722, #e64a19) !important;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3) !important;
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4) !important;
+  }
+}

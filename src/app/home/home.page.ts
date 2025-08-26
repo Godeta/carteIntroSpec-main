@@ -16,13 +16,23 @@ export class HomePage {
   showInfo = false;
   selectedTheme = 'light';
   gameMode = 'jeu';
+  selectedLanguage = 'fr';
+  advancedModes = false;
 
   constructor(private router: Router) {
-    // Load saved game mode (Android compatible)
+    // Load saved settings (Android compatible)
     try {
       const savedMode = localStorage.getItem('gameMode');
+      const savedLanguage = localStorage.getItem('language');
+      const savedAdvanced = localStorage.getItem('advancedModes');
       if (savedMode) {
         this.gameMode = savedMode;
+      }
+      if (savedLanguage) {
+        this.selectedLanguage = savedLanguage;
+      }
+      if (savedAdvanced) {
+        this.advancedModes = savedAdvanced === 'true';
       }
     } catch (e) {
       console.warn('localStorage not available');
@@ -61,5 +71,23 @@ export class HomePage {
       console.warn('localStorage not available');
     }
     this.gameMode = mode;
+  }
+
+  updateLanguage(language: string) {
+    try {
+      localStorage.setItem('language', language);
+    } catch (e) {
+      console.warn('localStorage not available');
+    }
+    this.selectedLanguage = language;
+  }
+
+  updateAdvancedModes(advanced: boolean) {
+    try {
+      localStorage.setItem('advancedModes', advanced.toString());
+    } catch (e) {
+      console.warn('localStorage not available');
+    }
+    this.advancedModes = advanced;
   }
 }

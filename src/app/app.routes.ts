@@ -22,6 +22,14 @@ export const routes: Routes = [
     loadComponent: () => import('./warhammer/war.component').then((m) => m.WarComponent),
   },
   {
+    path: 'brainstorm',
+    loadComponent: () => import('./brainstorm/brain.component').then((m) => m.BrainComponent),
+  },
+  {
+    path: 'ecsi',
+    loadComponent: () => import('./ecsi/ecsi.component').then((m) => m.EcsiComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

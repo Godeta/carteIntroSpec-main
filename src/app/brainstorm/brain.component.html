@@ -1,0 +1,94 @@
+<!-- Main View -->
+<main *ngIf="currentView === 'main'" class="brainstorm-background">
+  <!-- Back button -->
+  <button class="back-button" routerLink="/home">
+    <span>{{ content.backButton }}</span>
+  </button>
+
+  <div class="content-container">
+    <h1>{{ content.title }}</h1>
+    <h2>{{ content.subtitle }}</h2>
+    <p class="intro">{{ content.description }}</p>
+    <p class="main-text">{{ content.paragraph }}</p>
+    
+    <div class="sections-container">
+      <div class="section">
+        <div class="section-header">
+          <span class="emoji">{{ content.section1.emoji }}</span>
+          <h3>{{ content.section1.title }}</h3>
+          <p class="section-subtitle">{{ content.section1.subtitle }}</p>
+        </div>
+        <button class="brainstorm-button" (click)="showCards(1)">
+          <span>{{ content.section1.button }}</span>
+        </button>
+      </div>
+      
+      <div class="section">
+        <div class="section-header">
+          <span class="emoji">{{ content.section2.emoji }}</span>
+          <h3>{{ content.section2.title }}</h3>
+          <p class="section-subtitle">{{ content.section2.subtitle }}</p>
+        </div>
+        <button class="brainstorm-button" (click)="showCards(2)">
+          <span>{{ content.section2.button }}</span>
+        </button>
+      </div>
+      
+      <div class="section">
+        <div class="section-header">
+          <span class="emoji">{{ content.section3.emoji }}</span>
+          <h3>{{ content.section3.title }}</h3>
+          <p class="section-subtitle">{{ content.section3.subtitle }}</p>
+        </div>
+        <button class="brainstorm-button" (click)="showCards(3)">
+          <span>{{ content.section3.button }}</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="challenge-section">
+      <h3>Besoin d'inspiration ?</h3>
+      <p>Essayez un défi aléatoire ce soir :</p>
+      <button class="challenge-button" (click)="getRandomChallenge()">
+        <span>Défi express</span>
+      </button>
+      <div *ngIf="currentChallenge" class="challenge-display">
+        <p>{{ currentChallenge }}</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Cards View -->
+<main *ngIf="currentView !== 'main'" class="brainstorm-background">
+  <button class="back-button" (click)="backToMain()">
+    <span>← Retour</span>
+  </button>
+  
+  <div class="cards-container">
+    <div class="cards-grid">
+      <div *ngFor="let card of getCurrentCards()" class="card-item" (click)="openCard(card)">
+        <h3>{{ card.title }}</h3>
+        <p><strong>Personnes:</strong> {{ card.people }}</p>
+        <p class="keywords">{{ card.keywords }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div *ngIf="showPopup" class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closePopup()">×</button>
+      <h2>{{ selectedCard?.title }}</h2>
+      <p class="popup-meta">{{ selectedCard?.people }} | {{ selectedCard?.keywords }}</p>
+      <div class="popup-section">
+        <h3>Présentation :</h3>
+        <p>{{ selectedCard?.presentation }}</p>
+      </div>
+      <div class="popup-section">
+        <h3>Exemple :</h3>
+        <p class="example">{{ selectedCard?.example }}</p>
+      </div>
+    </div>
+  </div>
+</main>

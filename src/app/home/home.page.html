@@ -20,8 +20,18 @@
         <div class="shiny-button enigma-button" routerLink="/enigme">
           Énigmes
         </div>
+        
+        <div class="shiny-button brainstorm-button" routerLink="/brainstorm" *ngIf="advancedModes">
+          Brainstorm - réflexion collective
+        </div>
+        
+        <div class="shiny-button debates-button" routerLink="/ecsi" *ngIf="advancedModes">
+          Débats
+        </div>
+        
         <button class="shiny-button secondary" (click)="toggleOptions()">Options</button>
         <button class="shiny-button info" (click)="toggleInfo()">Infos</button>
+        <a href="https://forms.gle/skvWgiUhYQkVCEoC9" target="_blank" class="contact-link">Contact</a>
       </div>
 
       <div class="options-panel" *ngIf="showOptions">
@@ -39,6 +49,17 @@
             <option value="jeu">Jeu</option>
             <option value="libre">Libre</option>
           </select>
+        </div>
+        <div class="option-item">
+          <label>Langue:</label>
+          <select [(ngModel)]="selectedLanguage" (change)="updateLanguage(selectedLanguage)">
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇬🇧 English</option>
+          </select>
+        </div>
+        <div class="option-item">
+          <label>Modes avancés:</label>
+          <input type="checkbox" [(ngModel)]="advancedModes" (change)="updateAdvancedModes(advancedModes)">
         </div>
         <div class="warhammer-button" *ngIf="selectedTheme === 'dark'">
           <br/>
@@ -74,8 +95,8 @@
 
     <footer class="credits">
       <p>Créé par Arnaud GODET, Janvier 2025</p>
-      <p> Mis à jour début Août 2025</p>
-      <p class="version">Version 1.5</p>
+      <p> Mis à jour fin Août 2025</p>
+      <p class="version">Version 1.6</p>
     </footer>
   </div>
 </main>

@@ -110,6 +110,15 @@ main {
       }
     }
   }
+  
+  .contact-link {
+    color: #ffd700 !important;
+    font-weight: bold !important;
+    
+    &:hover {
+      color: #ffeb3b !important;
+    }
+  }
 }
 
 .button-container {
@@ -198,6 +207,42 @@ main {
 
     &::before {
       content: '🔍';
+      margin-right: 10px;
+    }
+  }
+  
+  // Brainstorm
+  &.brainstorm-button {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    &::before {
+      content: '🧠';
+      margin-right: 10px;
+    }
+  }
+  
+  // Débats
+  &.debates-button {
+    background: linear-gradient(45deg, #FF5722, #E64A19);
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+    }
+
+    &::before {
+      content: '💬';
       margin-right: 10px;
     }
   }
@@ -373,6 +418,22 @@ main {
 
 .game-intro {
   animation: fadeIn 0.8s ease-out;
+}
+
+.contact-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+  
+  &:hover {
+    color: #2196F3;
+    text-decoration: underline;
+  }
 }
 
 // ... (keep existing styles) ...
