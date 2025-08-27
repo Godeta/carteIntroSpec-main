@@ -379,11 +379,14 @@ header .right {
   text-align: center;
   z-index: 1000;
   
-  .back-button-setup {
+  .title-setup {
     position: absolute;
     top: 20px;
-    left: 20px;
-    background: linear-gradient(45deg, #2196F3, #21CBF3);
+  }
+
+  .back-button-setup {
+    
+    background: linear-gradient(45deg, #598cc2, #98b2de);
     color: white;
     border: none;
     padding: 10px 15px;

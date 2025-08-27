@@ -10,7 +10,10 @@
 <main>
   <!-- Player Setup Screen -->
   <div *ngIf="showPlayerSetup" class="player-setup">
-    <button class="back-button-setup" routerLink="/home">← Retour au menu</button>
+    <header class="game-header">
+      <h1 class="game-title title-setup">Pasapa</h1>
+    <button class="back-button-setup" routerLink="/home">Retour au menu</button>
+    </header>
     <h2>Configuration des joueurs</h2>
     <div class="player-inputs">
       <div *ngFor="let player of players; let i = index; trackBy: trackByIndex" class="player-input">
