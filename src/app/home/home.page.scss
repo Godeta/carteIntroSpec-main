@@ -503,3 +503,99 @@ main {
   visibility: hidden;
 }
 
+// Warhammer Transition
+.warhammer-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .fade-content {
+    text-align: center;
+
+    
+    .fade-title {
+      font-size: 3rem;
+      color: white;
+      margin: 0;
+      font-weight: bold;
+      min-height: 3.5rem;
+      
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+        min-height: 3rem;
+      }
+    }
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.star-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10002;
+
+  .expanding-star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    transform: translate(-50%, -50%);
+    animation: starExpand 1.5s ease-out forwards;
+
+    // white glow overlay
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, white 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: starGlow 1.5s ease-out forwards;
+    }
+  }
+}
+
+@keyframes starExpand {
+  0% { font-size: 20px; opacity: 1; }
+  80% { font-size: 50vmax; opacity: 1; }
+  100% { font-size: 200vmax; opacity: 1; }
+}
+
+@keyframes starGlow {
+  0% { width: 0; height: 0; opacity: 0; }
+  70% { width: 0; height: 0; opacity: 0.2; }
+  100% { width: 300vmax; height: 300vmax; opacity: 1; }
+}
+

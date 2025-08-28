@@ -8,7 +8,7 @@
         <p class="tagline">Explorez, Réfléchissez, Découvrez-vous</p>
       </header>
       <div class="button-container">
-        <div class="shiny-button card-button" (click)="goToCard()">
+        <div class="shiny-button card-button" (click)="goToCard($event)">
           <span class="star"></span>
           Cartes d'Introspection
         </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="warhammer-button" *ngIf="selectedTheme === 'dark'">
           <br/>
-          <button class="button secondary" routerLink="/warhammer">Warhammer</button>
+          <button class="button secondary" (click)="goToWarhammer($event)">Warhammer</button>
         </div>
       </div>
     </div>
@@ -99,4 +99,31 @@
       <p class="version">Version 1.6</p>
     </footer>
   </div>
+  
+  <!-- Splash Animation -->
+  <div class="splash-overlay" [class.active]="showSplash">
+    <div class="splash-circle"></div>
+  </div>
+  
+  <!-- Welcome Screen -->
+  <div class="welcome-screen" [class.active]="showWelcome">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Pasapa</h1>
+      <p class="welcome-subtitle">Welcome</p>
+    </div>
+  </div>
+  
+  <!-- Warhammer Transition -->
+  <div class="warhammer-transition" [class.active]="showWarhammerTransition">
+    <div class="fade-content">
+      <h1 class="fade-title">{{ warhammerText }}</h1>
+    </div>
+  </div>
+  
+  <!-- Star Transition -->
+  <!-- Only render the overlay when active -->
+<div *ngIf="showStarTransition" class="star-transition">
+  <div class="expanding-star">⭐</div>
+</div>
+
 </main>

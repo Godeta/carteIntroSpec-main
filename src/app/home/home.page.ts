@@ -18,6 +18,11 @@ export class HomePage {
   gameMode = 'jeu';
   selectedLanguage = 'fr';
   advancedModes = false;
+  showSplash = false;
+  showWelcome = false;
+  showWarhammerTransition = false;
+  warhammerText = '';
+  showStarTransition = false;
 
   constructor(private router: Router) {
     // Load saved settings (Android compatible)
@@ -39,13 +44,34 @@ export class HomePage {
     }
   }
   
-  goToCard() {
-    console.log('Navigating to card with mode:', this.gameMode);
-    this.router.navigate(['/card']).then(success => {
-      console.log('Navigation success:', success);
-    }).catch(error => {
-      console.error('Navigation error:', error);
-    });
+  goToCard(event: Event) {
+    event.preventDefault();
+    this.showStarTransition = true;
+    
+    setTimeout(() => {
+      this.showStarTransition = false;
+      this.router.navigate(['/card']);
+    }, 1500);
+  }
+  
+  goToWarhammer(event: Event) {
+    event.preventDefault();
+    this.showWarhammerTransition = true;
+    this.animateText('Combattez pour l\'empereur !!!');
+    
+    setTimeout(() => {
+      this.showWarhammerTransition = false;
+      this.router.navigate(['/warhammer']);
+    }, 4000);
+  }
+  
+  animateText(text: string) {
+    this.warhammerText = '';
+    for (let i = 0; i <= text.length; i++) {
+      setTimeout(() => {
+        this.warhammerText = text.substring(0, i);
+      }, i * 100);
+    }
   }
 
   toggleOptions() {
