@@ -205,9 +205,57 @@ main {
       box-shadow: 0 6px 20px rgba(212, 180, 131, 0.4);
     }
 
-    &::before {
-      content: '🔍';
-      margin-right: 10px;
+
+  }
+  
+  &.rotating-3d {
+    width: 250px;
+    height: 70px;
+    transition: 2s;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(0deg);
+    
+    &:hover {
+      transform: perspective(1000px) rotateX(360deg);
+    }
+    
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5C4D3C;
+      background: linear-gradient(45deg, #D4B483, #C4A473);
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: 0.5s;
+      border: 2px solid #B39B6D;
+      border-radius: 8px;
+      box-sizing: border-box;
+      
+      &:nth-child(1) {
+        transform: rotateX(0deg) translateZ(35px);
+      }
+      
+      &:nth-child(2) {
+        transform: rotateX(90deg) translateZ(35px);
+      }
+      
+      &:nth-child(3) {
+        transform: rotateX(180deg) translateZ(35px);
+      }
+      
+      &:nth-child(4) {
+        transform: rotateX(270deg) translateZ(35px);
+      }
+    }
+    
+    &:hover span {
+      color: #fff;
     }
   }
   
@@ -217,15 +265,71 @@ main {
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
     font-size: 1.2rem;
     padding: 20px 40px;
+    position: relative;
+    overflow: visible;
     
     &:hover, &:active {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+      
+      &::after, .thought-bubble {
+        animation-play-state: paused;
+      }
     }
 
-    &::before {
-      content: '🧠';
-      margin-right: 10px;
+
+    
+    .thought-bubble {
+      position: absolute;
+      background: rgba(22, 159, 83, 0.9);
+      border-radius: 50%;
+      animation: thoughtFloat 3s ease-in-out infinite;
+      
+      &:nth-child(1) {
+        width: 8px;
+        height: 8px;
+        top: -15px;
+        left: 100%;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        width: 12px;
+        height: 12px;
+        top: -30px;
+        left: 110%;
+        animation-delay: 0.33s;
+      }
+      
+      &:nth-child(3) {
+        width: 20px;
+        height: 20px;
+        top: -50px;
+        left: 120%;
+        animation-delay: 0.5s;
+      }
+      
+      &:nth-child(4) {
+        width: 30px;
+        height: 30px;
+        top: -70px;
+        left: 130%;
+        animation-delay: 1s;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 12px;
+          height: 12px;
+          border: 2px solid #4CAF50;
+          border-radius: 50%;
+          border-top: 2px solid transparent;
+          transform: translate(-50%, -50%);
+          animation: spiral 2s linear infinite;
+        }
+      }
     }
   }
   
@@ -336,6 +440,30 @@ main {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes thoughtFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+}
+
+@keyframes spiral {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 

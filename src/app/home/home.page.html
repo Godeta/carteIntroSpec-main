@@ -17,11 +17,18 @@
           Jeux d'Ambiance
         </div>
 
-        <div class="shiny-button enigma-button" routerLink="/enigme">
-          Énigmes
+        <div class="shiny-button enigma-button rotating-3d" routerLink="/enigme">
+          <span>Énigmes</span>
+          <span>Énigmes</span>
+          <span>Énigmes</span>
+          <span>Énigmes</span>
         </div>
         
         <div class="shiny-button brainstorm-button" routerLink="/brainstorm" *ngIf="advancedModes">
+          <div class="thought-bubble"></div>
+          <div class="thought-bubble"></div>
+          <div class="thought-bubble"></div>
+          <div class="thought-bubble">🧠</div>
           Brainstorm - réflexion collective
         </div>
         
@@ -57,6 +64,7 @@
             <option value="en">🇬🇧 English</option>
           </select>
         </div>
+        <p> Merci Aurelia et passe une bonne soirée ! 😉</p>
         <div class="option-item">
           <label>Modes avancés:</label>
           <input type="checkbox" [(ngModel)]="advancedModes" (change)="updateAdvancedModes(advancedModes)">
@@ -105,13 +113,7 @@
     <div class="splash-circle"></div>
   </div>
   
-  <!-- Welcome Screen -->
-  <div class="welcome-screen" [class.active]="showWelcome">
-    <div class="welcome-content">
-      <h1 class="welcome-title">Pasapa</h1>
-      <p class="welcome-subtitle">Welcome</p>
-    </div>
-  </div>
+  
   
   <!-- Warhammer Transition -->
   <div class="warhammer-transition" [class.active]="showWarhammerTransition">

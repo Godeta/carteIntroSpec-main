@@ -47,10 +47,10 @@
     </div>
     
     <div class="challenge-section">
-      <h3>Besoin d'inspiration ?</h3>
-      <p>Essayez un défi aléatoire ce soir :</p>
+      <h3>{{ content.challengeTitle }}</h3>
+      <p>{{ content.challengeText }}</p>
       <button class="challenge-button" (click)="getRandomChallenge()">
-        <span>Défi express</span>
+        <span>{{ content.challengeButton }}</span>
       </button>
       <div *ngIf="currentChallenge" class="challenge-display">
         <p>{{ currentChallenge }}</p>
@@ -83,11 +83,11 @@
       <p class="popup-meta">{{ selectedCard?.people }} | {{ selectedCard?.keywords }}</p>
       <div class="popup-section">
         <h3>Présentation :</h3>
-        <p>{{ selectedCard?.presentation }}</p>
+        <div [innerHTML]="selectedCard?.presentation"></div>
       </div>
       <div class="popup-section">
         <h3>Exemple :</h3>
-        <p class="example">{{ selectedCard?.example }}</p>
+        <div [innerHTML]="selectedCard?.example"></div>
       </div>
     </div>
   </div>
