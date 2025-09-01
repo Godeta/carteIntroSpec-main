@@ -259,28 +259,33 @@ export const enigmaCards: EnigmaCard[] = [
   //Enigmes mathématiques
   { 
     category: 'Math', 
-    question: 'Un train part de Paris à 8h00 à une vitesse de 80 km/h. Un autre train part de Lyon à 9h00 à une vitesse de 100 km/h. À quelle heure se rencontreront-ils? 🚆', 
-    answer: 'Ils se rencontreront à 11h00.' 
+    question: 'Un train part de Caen à 8h00 à une vitesse de 80 km/h. Un autre train part de Chateauroux à 9h00 à une vitesse de 100 km/h. Il y a 400km sur une ligne droite entre les deux. À quelle heure se rencontreront-ils? 🚆', 
+    answer: "Méthode rapide : Entre 8h et 9h, le train de Caen parcourt 80 km, ce qui laisse 320 km à couvrir. À partir de 9h, les deux trains se rapprochent à une vitesse combinée de 180 km/h. Le temps nécessaire pour combler les 320 km est de 320 ÷ 180 = 16/9 ≈ 1h46min40s. Ils se rencontrent donc à 10h46min40s. Méthode par équation : Soit t le temps écoulé depuis 8h. Le train de Caen parcourt 80t km et celui de Paris 100(t−1) km. On a donc : 80t + 100(t−1) = 400 ⇒ 180t = 500 ⇒ t = 25/9 ≈ 2h46min40s. En partant de 8h00, cela donne également 10h46min40s."
   },
   { 
     category: 'Math', 
-    question: 'Si un triangle a une base de 8 cm et une hauteur de 5 cm, quelle est sa surface? 🔺', 
-    answer: 'La surface est de 20 cm².' 
+    question: 'Nicolas et Fabien sont deux athlètes 💪 Mais pas des coureurs rapides. Nicolas à une allure de 6min/km et Fabien 7min/km. Sur une piste de 1km en combien de temps Nicolas aura fait un tour de plus que Fabien ? 🏃‍♂️', 
+    answer: '6*7 = 42min. Nicolas aura fait 7 tours et Fabien 6. Il aura fait un tour de plus que Fabien.' 
   },
-  
+
   { 
     category: 'Math', 
-    question: 'Je suis un nombre qui, divisé par la somme de ses chiffres, donne 3. Quel est ce nombre? 🔢', 
-    answer: '18 (18 divisé par 1+8 = 2 donne 9).' 
+    question: 'Je suis un nombre qui, divisé par la somme de ses chiffres, donne 7. Quel est ce nombre? 🔢', 
+    answer: '21 (21 divisé par 2+1 = 3 donne bien 7).' 
   },
   { 
     category: 'Math', 
-    question: 'Je suis un nombre qui, multiplié par 4, donne un nombre dont la somme des chiffres est égale à 4. Quel est ce nombre? 🔢', 
-    answer: '13 (13 x 4 = 52 et 5 + 2 = 7).' 
+    question: '3 jardiniers entretiennent une zone de 52 m2 et 7 arbres. Justin et Matheo mettent 2h à faire l\'entretient. Titouan et Justin mettent 4h pour cela. Matheo et Titouan mettent 3h. En théorie, en combien de temps Titouan finirait ce travail tout seul ? 🔢', 
+    answer: 'Sur 1 heure de travail on a des valeurs de zone entretenue de: J+T = 1/2, J+M = 1/2, T+J = 1/4, T+M = 1/3 Donc T+J + T+M - J+M = 1/4 + 1/3 - 1/2 = 7/12-6/12 = 1/12 = 2T Donc en 1h, 2 Titouan font 1/12 de l\'entretien nécessaire... Il faudrait 24h pour que Titouan finisse le travail tout seul ! ' 
+  },
+  { 
+    category: 'Math', 
+    question: 'Aurelia a acheté beaucoup de mangas aujourd\'hui ! Sans "les mémoires de Vanitas" elle aurait payé 20 euros. Sans "One Piece" elle aurait payé 18€. Sans "Je me suis réincarné en troubadour" elle aurait payé 22€. Et sans "bible black" elle aurait payé 15€. Quel est le prix de chaque manga ? 📚', 
+    answer: 'Si on additionne les 4 prix on a payé 3 fois la somme totale donc MV + OP + RT + BB = (20€ + 18€ + 22€ + 15€)/3 = 25€ On en déduit que MV=25-20 = 5€, OP=25-18 = 7€, RT=25-22 = 3€ et BB=25-15 = 10€.' 
   },
   { 
     category: 'Math', 
     question: 'Si un cube a une arête de 3 cm, quel est son volume? 🧊', 
-    answer: 'Le volume est de 27 cm³.' 
+    answer: 'Le volume est de 3^3 27 cm³.' 
   }
     ];

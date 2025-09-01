@@ -22,7 +22,7 @@ export class CardComponent implements AfterViewInit {
   currentPlayerIndex: number = 0;
   currentTurn: number = 1;
   cardsPlayedThisTurn: number = 0;
-  gameCategories: string[] = ['Léger', 'Situation', 'Anecdote', 'Valeurs', 'Ethique', 'Futur', 'Ensemble'];
+  gameCategories: string[] = ['Léger', 'Situation', 'Anecdotes', 'Valeurs', 'Ethique', 'Futur', 'Ensemble'];
   currentCategoryIndex: number = 0;
   gameStarted: boolean = false;
   showPlayerSetup: boolean = false;

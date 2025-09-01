@@ -118,23 +118,24 @@
 
     <div class="card-container">
       <div #cardElement class="card" [ngStyle]="{'background-color': currentCardColor}">
+        <img class="card-background-image" [src]="'assets/cards/' + currentCard.name + '.jpg'" [alt]="currentCard.name">
         <div class="category-badge">{{ currentCard.category }}</div>
         <div class="card-content">
           <h2>{{ currentCard.question }}</h2>
-          <button class="shiny-button next-button" (click)="nextCard()">
-            <span>Question suivante</span>
-          </button>
         </div>
         <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
       </div>
     </div>
-    
+    <button class="shiny-button next-button" (click)="nextCard()">
+      <span>Question suivante</span>
+    </button>
     <div class="info-area">
       <h3>Cartes jouées</h3>
       <div class="played-cards">
-        <span *ngFor="let cardName of playedCardNames; let i = index" class="card-name">
-          {{ cardName }}<span *ngIf="i < playedCardNames.length - 1">, </span>
-        </span>
+        <img *ngFor="let cardName of playedCardNames" 
+             class="card-image" 
+             [src]="'assets/cards/' + cardName + '.jpg'" 
+             [alt]="cardName">
         <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
       </div>
     </div>

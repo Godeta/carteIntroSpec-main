@@ -14,6 +14,17 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
+
+.card-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  z-index: 1;
+}
   
   /* Mobile first design */
   width: 90%;
@@ -47,31 +58,34 @@
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  z-index: 2;
 }
 
 /* Card content layout */
 .card-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   padding: 60px 20px 30px; /* Added top padding for category badge */
+  position: relative;
+  z-index: 2;
 
   h2 {
     font-size: 1.8rem;
     margin: 20px 0;
     line-height: 1.4;
-    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
 }
 
 /* Next button positioning */
 .next-button {
-  margin-top: auto;
-  align-self: center;
+  margin: 20px auto;
+  display: block;
   
   /* Make button more prominent */
   background: linear-gradient(45deg, #2196F3, #21CBF3);
@@ -309,6 +323,21 @@ header .right {
   background-color: rgba(0, 123, 255, 0.2); /* 🔹 half transparent blue */
   border-radius: 8px;
   text-align: center;
+}
+
+.played-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-image {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Action info styling */

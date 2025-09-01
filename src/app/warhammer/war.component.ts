@@ -27,6 +27,10 @@ class Enemy {
     this.image.src = 'assets/demon_warhammer.png';
   }
 
+  /**
+   * Update the enemy's position by adding its speed to its x.
+   * This moves the enemy left or right depending on its speed.
+   */
   update(): void {
     this.x += this.speed;
   }
