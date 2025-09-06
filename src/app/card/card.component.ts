@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { IonButton, IonRouterLink } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {cards, availableActionCards, en_cards, en_availableActionCards } from './card-data';
+import {cards, availableActionCards, en_cards, en_availableActionCards, es_cards, es_availableActionCards } from './card-data';
 
 @Component({
   selector: 'app-card',
@@ -85,9 +85,9 @@ export class CardComponent implements AfterViewInit {
 
   get currentCardColor() {
     const colors: { [key: string]: string } = { // Define index signature
-      Léger: '#ccffcc', // green
-      Situation: '#edf342ff', // chartreuse
-      Anecdote: '#faff2fff', // yellow
+      Léger: '#12e712ff', // green
+      Situation: '#a9f342ff', // chartreuse
+      Anecdotes: '#faff2fff', // yellow
       Valeurs: '#ff9c2fff', // orange
       Ethique: '#ff342fff', // red
       Futur: '#ff2f92ff', // pink
@@ -182,31 +182,40 @@ export class CardComponent implements AfterViewInit {
   }
 
   nextCard() {
-    this.playedCardNames.push(this.currentCard.name);
-    
-    if (this.gameMode === 'jeu') {
-      this.jeuModeCardIndex++;
-      this.cardsPlayedThisTurn++;
-      this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
-      
-      if (this.cardsPlayedThisTurn >= this.totalCardsPerTurn) {
-        if (this.currentCategoryIndex >= this.gameCategories.length - 1) {
-          this.showGameEnd = true;
-          return;
-        }
-        this.showNextTurn = true;
-        return;
-      }
-    } else {
-      this.currentCardIndex = (this.currentCardIndex + 1) % this.filteredCards.length;
-    }
-    
-    this.cardsPlayed++;
-    
+    // Add flip animation
     if (this.cardElement) {
-      this.cardElement.nativeElement.style.transform = '';
+      this.cardElement.nativeElement.classList.add('card-flip');
+      
+      // Change content at the peak of the flip (when card is sideways)
+      setTimeout(() => {
+        this.playedCardNames.push(this.currentCard.name);
+        
+        if (this.gameMode === 'jeu') {
+          this.jeuModeCardIndex++;
+          this.cardsPlayedThisTurn++;
+          this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
+          
+          if (this.cardsPlayedThisTurn >= this.totalCardsPerTurn) {
+            if (this.currentCategoryIndex >= this.gameCategories.length - 1) {
+              this.showGameEnd = true;
+              return;
+            }
+            this.showNextTurn = true;
+            return;
+          }
+        } else {
+          this.currentCardIndex = (this.currentCardIndex + 1) % this.filteredCards.length;
+        }
+        
+        this.cardsPlayed++;
+        this.changeDetectorRef.detectChanges();
+      }, 500); // Change content at the peak of the 1.2s animation
+      
+      // Remove animation class after complete animation
+      setTimeout(() => {
+        this.cardElement.nativeElement.classList.remove('card-flip');
+      }, 300); // Full animation duration
     }
-    this.changeDetectorRef.detectChanges();
   }
 
   previousCard() {
@@ -237,6 +246,9 @@ availableActionCards = availableActionCards;
       if (language === 'en') {
         this.cards = en_cards;
         this.availableActionCards = en_availableActionCards;
+      } else if (language === 'es') {
+        this.cards = es_cards;
+        this.availableActionCards = es_availableActionCards;
       } else {
         this.cards = cards;
         this.availableActionCards = availableActionCards;
@@ -254,6 +266,18 @@ availableActionCards = availableActionCards;
   }
 
   toggleActionCard() {
+    this.showActionCard = !this.showActionCard;
+    if (this.showActionCard) {
+      this.generateRandomActionCard();
+    }
+  }
+
+  generateRandomActionCard() {
+    const randomIndex = Math.floor(Math.random() * this.availableActionCards.length);
+    this.currentActionCard = this.availableActionCards[randomIndex];
+  }
+
+d() {
     this.showActionCard = !this.showActionCard;
   }
 

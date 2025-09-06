@@ -312,6 +312,157 @@ export const en_cards = [
   { name: 'EN16', category: 'Ensemble', question: 'A story someone told here that really stuck with you?' },
 ];
 
+export const es_cards = [
+  // Categoría Ligero
+  { name: 'L1', category: 'Léger', question: '¿Un trabajo que podrías haber tenido en otra vida?' },
+  { name: 'L2', category: 'Léger', question: '¿Un trabajo que estás seguro de que nunca harías?' },
+  { name: 'L3', category: 'Léger', question: 'Si pudieras dominar perfectamente un instrumento musical, ¿cuál elegirías?' },
+  { name: 'L4', category: 'Léger', question: '¿Qué instrumento nunca querrías aprender?' },
+  { name: 'L5', category: 'Léger', question: 'Si pudieras hablar otro idioma con fluidez, ¿cuál elegirías?' },
+  { name: 'L6', category: 'Léger', question: '¿Alguna vez empezaste a aprender un idioma y luego lo olvidaste?' },
+  { name: 'L7', category: 'Léger', question: '¿Qué jugador aquí es más probable que salga de fiesta el fin de semana?' },
+  { name: 'L8', category: 'Léger', question: '¿Y quién es más probable que se quede en su habitación todo el fin de semana?' },
+  { name: 'L9', category: 'Léger', question: 'Si pudieras cenar con alguien, vivo o muerto, ¿a quién elegirías?' },
+  { name: 'L10', category: 'Léger', question: 'Si tuvieras que vivir de por vida con alguien a quien rara vez ves, ¿quién sería?' },
+  { name: 'L11', category: 'Léger', question: '¿Te gustaría ser famoso? Si sí, ¿cómo?' },
+  { name: 'L12', category: 'Léger', question: '¿Algo de ti que preferirías mantener en secreto del público?' },
+  { name: 'L13', category: 'Léger', question: 'Antes de hacer una llamada, ¿a veces ensayas lo que vas a decir?' },
+  { name: 'L14', category: 'Léger', question: '¿A veces hablas en voz alta contigo mismo?' },
+  { name: 'L15', category: 'Léger', question: 'Si pudieras vivir en cualquier época (pasada o futura), ¿cuál elegirías?' },
+  { name: 'L16', category: 'Léger', question: '¿Hay una época en la que definitivamente no querrías vivir?' },
+
+  // Categoría Situación
+  { name: 'S1', category: 'Situation', question: 'Estás atrapado en una fila interminable. ¿Cómo te entretienes?' },
+  { name: 'S2', category: 'Situation', question: 'Estás solo en un gran jardín sin nada, todo un día. ¿Qué haces? ¿Disfrutas el día?' },
+  { name: 'S3', category: 'Situation', question: 'Tienes un examen/evento estresante que preparar, pero unos amigos que rara vez ves te invitan a salir. ¿Qué haces?' },
+  { name: 'S4', category: 'Situation', question: '¡Nuevo virus! Estás encerrado en casa durante 3 meses. ¿Qué haces?' },
+  { name: 'S5', category: 'Situation', question: 'Un desconocido te cuenta su vida en el transporte público. ¿Cómo reaccionas?' },
+  { name: 'S6', category: 'Situation', question: 'Le cuentas tu vida a un amigo, pero no te sigue. ¿Qué haces?' },
+  { name: 'S7', category: 'Situation', question: 'Recibes una oferta de trabajo en otra ciudad, lejos de tu familia y amigos. ¿Qué haces?' },
+  { name: 'S8', category: 'Situation', question: 'Sabes que vas a suspender tu examen. ¿Te vas antes de que acabe el tiempo?' },
+  { name: 'S9', category: 'Situation', question: 'Ganas la lotería y te conviertes en millonario. ¿Qué haces?' },
+  { name: 'S10', category: 'Situation', question: 'De repente, te quedas sin dinero ni lugar donde vivir. ¿Qué haces?' },
+  { name: 'S11', category: 'Situation', question: 'Tu trabajo es agradable y bien pagado, pero la empresa va contra tus valores.' },
+  { name: 'S12', category: 'Situation', question: 'Te pagan el salario mínimo, pero estás orgulloso de tu trabajo.' },
+  { name: 'S13', category: 'Situation', question: 'Estás haciendo un pastel y a mitad te das cuenta de que no tienes los ingredientes correctos.' },
+  { name: 'S14', category: 'Situation', question: 'Hiciste un pastel increíble, pero tu familia/amigos son quisquillosos y no lo quieren.' },
+  { name: 'S15', category: 'Situation', question: 'Estás dando una presentación y olvidas completamente lo que ibas a decir.' },
+  { name: 'S16', category: 'Situation', question: 'Tu amigo empieza a decir tonterías durante una presentación.' },
+
+  // Categoría Anécdotas
+  { name: 'A1', category: 'Anecdotes', question: 'Un animal que conociste y con el que tuviste un fuerte vínculo.' },
+  { name: 'A2', category: 'Anecdotes', question: 'Algo bueno que hiciste de niño y que hizo sentir orgullosa a tu familia.' },
+  { name: 'A3', category: 'Anecdotes', question: 'Una comida que nunca olvidarás, para bien o para mal.' },
+  { name: 'A4', category: 'Anecdotes', question: 'Un lugar particularmente cómodo —o incómodo— donde pasaste una noche.' },
+  { name: 'A5', category: 'Anecdotes', question: 'Un cumpleaños que realmente recuerdas. ¿Qué actividades hiciste?' },
+  { name: 'A6', category: 'Anecdotes', question: 'Una bebida que amabas de niño.' },
+  { name: 'A7', category: 'Anecdotes', question: 'Un recuerdo de un colega que se te quedó grabado.' },
+  { name: 'A8', category: 'Anecdotes', question: 'El ramo de flores más grande que has visto.' },
+  { name: 'A9', category: 'Anecdotes', question: 'La primera vez que bebiste alcohol.' },
+  { name: 'A10', category: 'Anecdotes', question: '¿Recuerdas un espectáculo o actuación en la que participaste?' },
+  { name: 'A11', category: 'Anecdotes', question: '¿Tienes un recuerdo especial con Papá Noel?' },
+  { name: 'A12', category: 'Anecdotes', question: '¿Cómo viviste aprender a montar o conducir (bici, coche, moto…)?' },
+  { name: 'A13', category: 'Anecdotes', question: 'Un recuerdo de estar enfermo y alguien cuidando de ti.' },
+  { name: 'A14', category: 'Anecdotes', question: 'Un tío o tía que siempre te hacía reír.' },
+  { name: 'A15', category: 'Anecdotes', question: 'Un olor que te trae recuerdos.' },
+  { name: 'A16', category: 'Anecdotes', question: 'Tus primeros recuerdos de dormir en casa de un amigo.' },
+
+  // Categoría Valores
+  { name: 'V1', category: 'Valeurs', question: 'Si una bola de cristal pudiera decirte la verdad sobre ti, tu vida, el futuro o cualquier otra cosa, ¿qué te gustaría saber?' },
+  { name: 'V2', category: 'Valeurs', question: '¿Qué preferirías no saber nunca?' },
+  { name: 'V3', category: 'Valeurs', question: '¿Cuál es la mayor lección que te enseñaron tus padres o tus seres queridos?' },
+  { name: 'V4', category: 'Valeurs', question: '¿Hay una lección que aprendiste completamente por ti mismo?' },
+  { name: 'V5', category: 'Valeurs', question: '¿Cómo defines la felicidad y qué valores contribuyen a ella para ti?' },
+  { name: 'V6', category: 'Valeurs', question: '¿Qué no es tan bueno en tu vida diaria / cuáles son algunos de tus malos hábitos?' },
+  { name: 'V7', category: 'Valeurs', question: '¿Qué cualidad admiras más en los demás?' },
+  { name: 'V8', category: 'Valeurs', question: 'Nombra una cualidad que crees tener o que los demás suelen atribuirte.' },
+  { name: 'V9', category: 'Valeurs', question: '¿Dónde te sientes más en casa?' },
+  { name: 'V10', category: 'Valeurs', question: '¿Qué tamaño de comunidad se adapta mejor a ti? ¿10 personas? ¿100? ¿1.000? ¿100.000? ¿10 millones?' },
+  { name: 'V11', category: 'Valeurs', question: '¿Cuál es uno de los gestos más amables que alguien ha hecho por ti?' },
+  { name: 'V12', category: 'Valeurs', question: '¿Cuál es uno de los gestos más amables que tú has hecho por alguien?' },
+  { name: 'V13', category: 'Valeurs', question: '¿Qué sacrificio estarías dispuesto a hacer por amor?' },
+  { name: 'V14', category: 'Valeurs', question: '¿Hay un lugar donde pasaste mucho tiempo pero nunca sentiste que pertenecías?' },
+  { name: 'V15', category: 'Valeurs', question: '¿Qué cumplido te gustaría recibir más a menudo?' },
+  { name: 'V16', category: 'Valeurs', question: '¿Qué tipo de crítica es más difícil para ti aceptar o cambiar?' },
+
+  // Categoría Ética
+  { name: 'E1', category: 'Ethique', question: '¿Qué opinas de la cría de animales—para cosméticos? ¿Para comida? ¿En qué casos lo consideras aceptable o no?' },
+  { name: 'E2', category: 'Ethique', question: '¿Realmente se puede bromear con todo?' },
+  { name: 'E3', category: 'Ethique', question: '¿Prefieres dejar que un niño piense que ganó o ganarle de manera justa?' },
+  { name: 'E4', category: 'Ethique', question: '¿Estás a favor o en contra de la educación no violenta? (¿física? ¿psicológica?)' },
+  { name: 'E5', category: 'Ethique', question: '¿Es legítima la caza? ¿En qué casos?' },
+  { name: 'E6', category: 'Ethique', question: 'En una relación a largo plazo, ¿qué rechazarías absolutamente? (¿cuenta conjunta? ¿vivir separados? ¿poligamia?)' },
+  { name: 'E7', category: 'Ethique', question: '¿Deben darse plataformas a las opiniones políticas extremas (ultraderecha, ultraizquierda, otras)? ¿Dónde limitarías la libertad de expresión?' },
+  { name: 'E8', category: 'Ethique', question: '¿Cómo sería para ti una sociedad utópica?' },
+  { name: 'E9', category: 'Ethique', question: '¿Crees que deberían requisarse las viviendas vacías para albergar a personas sin hogar o estudiantes?' },
+  { name: 'E10', category: 'Ethique', question: '¿Crees que se deberían prohibir los deberes escolares?' },
+  { name: 'E11', category: 'Ethique', question: '¿Aceptarías algunas soluciones eugenésicas? (implantes neuronales, brazos cibernéticos…)?' },
+  { name: 'E12', category: 'Ethique', question: '¿Debería ser obligatorio el servicio civil o militar?' },
+  { name: 'E13', category: 'Ethique', question: '¿A favor o en contra de la clonación? ¿Granjas de animales modificadas genéticamente para trasplantes de órganos?' },
+  { name: 'E14', category: 'Ethique', question: '¿Usarías el teletransportador de Parfit?' },
+  { name: 'E15', category: 'Ethique', question: 'Una isla está infestada de zombis, pero quedan sobrevivientes. ¿Lanzarías una bomba para evitar la propagación?' },
+  { name: 'E16', category: 'Ethique', question: '¿Irías a la guerra por tu país?' },
+
+  // Categoría Futuro
+  { name: 'F1', category: 'Futur', question: '¿Qué amigos o relaciones crees que todavía tendrás dentro de 20 años?' },
+  { name: 'F2', category: 'Futur', question: '¿Qué relaciones importantes se han desvanecido aunque pensabas que durarían?' },
+  { name: 'F3', category: 'Futur', question: '¿Qué responsabilidad te gustaría asumir en el futuro?' },
+  { name: 'F4', category: 'Futur', question: '¿Qué responsabilidad rechazarías asumir?' },
+  { name: 'F5', category: 'Futur', question: '¿Qué sueño de infancia te gustaría cumplir en el futuro?' },
+  { name: 'F6', category: 'Futur', question: '¿Qué sueño de infancia has abandonado?' },
+  { name: 'F7', category: 'Futur', question: '¿Qué tradición te gustaría mantener viva en el futuro?' },
+  { name: 'F8', category: 'Futur', question: '¿Qué tradición te gustaría que desapareciera?' },
+  { name: 'F9', category: 'Futur', question: '¿Qué impacto positivo te gustaría tener en tu comunidad?' },
+  { name: 'F10', category: 'Futur', question: '¿Qué impacto negativo temes tener en tu comunidad?' },
+  { name: 'F11', category: 'Futur', question: '¿Cómo imaginas el lugar donde vives (ciudad, pueblo…) dentro de 30 años?' },
+  { name: 'F12', category: 'Futur', question: '¿Cómo era el lugar donde vivían tus padres hace 30 años?' },
+  { name: 'F13', category: 'Futur', question: 'En tu opinión, ¿qué objeto cotidiano cambiará más en las próximas décadas?' },
+  { name: 'F14', category: 'Futur', question: 'En tu opinión, ¿qué objeto seguirá igual en las próximas décadas?' },
+  { name: 'F15', category: 'Futur', question: '¿Cómo imaginas las comidas familiares dentro de 30 años?' },
+  { name: 'F16', category: 'Futur', question: '¿Cómo eran cuando eras niño?' },
+
+  // Categoría Juntos
+  { name: 'EN1', category: 'Ensemble', question: '¿Hay algo especial que te gustaría hacer juntos algún día en tu vida?' },
+  { name: 'EN2', category: 'Ensemble', question: '¿Hay algo que ya hiciste con alguien en esta sala y que disfrutaste?' },
+  { name: 'EN3', category: 'Ensemble', question: '¿Quién te entiende mejor?' },
+  { name: 'EN4', category: 'Ensemble', question: '¿Hay algo que te resulte difícil de explicar a los demás?' },
+  { name: 'EN5', category: 'Ensemble', question: '¿De qué estás más agradecido en tu vida en este momento?' },
+  { name: 'EN6', category: 'Ensemble', question: '¿Qué es lo que más extrañas ahora mismo?' },
+  { name: 'EN7', category: 'Ensemble', question: '¿Cuál es el sueño más loco que te gustaría cumplir con alguien?' },
+  { name: 'EN8', category: 'Ensemble', question: '¿Cuál es tu mayor miedo en una relación?' },
+  { name: 'EN9', category: 'Ensemble', question: '¿Qué secreto te gustaría compartir con alguien?' },
+  { name: 'EN10', category: 'Ensemble', question: '¿Tienes un secreto que llevarás a la tumba?' },
+  { name: 'EN11', category: 'Ensemble', question: '¿En qué área te sientes más cómodo ayudando a los demás?' },
+  { name: 'EN12', category: 'Ensemble', question: '¿En qué situación necesitas más la ayuda de los demás?' },
+  { name: 'EN13', category: 'Ensemble', question: '¿Cuál fue tu primera impresión de alguien aquí que luego cambió?' },
+  { name: 'EN15', category: 'Ensemble', question: '¿Tu mejor recuerdo con alguien en esta sala?' },
+  { name: 'EN16', category: 'Ensemble', question: '¿Una historia que alguien contó aquí y que realmente se te quedó grabada?' },
+];
+
+
+export const es_availableActionCards = [
+  {
+    title: 'Preguntas Encadenadas',
+    description: 'Comienza tu respuesta partiendo de la respuesta del jugador anterior.'
+  },
+  {
+    title: 'Respuestas en 30 segundos',
+    description: 'Responde en 30s a una lista de preguntas creadas por los jugadores (ej: tu segundo nombre, tu penúltima comida, la edad de tu mamá...).'
+  },
+  {
+    title: 'Detalle para otro',
+    description: 'Un jugador responde sin detalle, tú completas explicando su forma de pensar a los demás.'
+  },
+  {
+    title: 'Calificar la respuesta',
+    description: 'Juzga la respuesta según ciertos criterios (conmovedor, divertido, sorprendente...).'
+  },
+  {
+    title: 'Pequeña historia',
+    description: 'Inventa una historia corta incluyendo tu respuesta (fábula, cuento, novela corta...).'
+  }
+];
+
 export const en_availableActionCards = [
   {
     title: 'Chained Questions',
