@@ -17,8 +17,8 @@
     <h2>Configuration des joueurs</h2>
     <div class="player-inputs">
       <div *ngFor="let player of players; let i = index; trackBy: trackByIndex" class="player-input">
-        <input 
-          [(ngModel)]="players[i]" 
+        <input
+          [(ngModel)]="players[i]"
           [id]="'player-' + i"
           placeholder="Nom du joueur {{ i + 1 }}"
           (input)="updatePlayer(i, $event)">
@@ -73,13 +73,13 @@
     <header class="game-header">
       <h1 class="game-title">Pasapa</h1>
     </header>
-    
+
     <div class="libre-controls" *ngIf="gameMode === 'libre'">
       <div class="left-buttons">
         <button class="control-button" routerLink="/home">Menu</button>
         <button class="control-button" (click)="resetLibreMode()">Reset</button>
       </div>
-      
+
       <div class="center-selector">
         <span class="cards-played">Cartes jouées: {{ cardsPlayed }}</span>
         <label for="category">Catégorie: </label>
@@ -88,25 +88,25 @@
           <option *ngFor="let category of uniqueCategories" [value]="category">{{ category }}</option>
         </select>
       </div>
-      
+
       <div class="right-icons">
         <button class="icon-button" (click)="toggleRules()">❓</button>
         <button class="icon-button" (click)="toggleActionCard()">⚡</button>
       </div>
     </div>
-    
+
     <div class="game-controls" *ngIf="gameMode === 'jeu'">
       <div class="left-buttons">
         <button class="control-button" routerLink="/home">Menu</button>
         <button class="control-button" (click)="restartGame()">Restart</button>
       </div>
-      
+
       <div class="center-info">
         <p><strong>Tour </strong> <span class="info-value">{{ currentTurn }}</span> - <strong>Catégorie: </strong> <span class="info-value category-color">{{ currentCategory }}</span></p>
         <p><strong>Joueur actuel: </strong> <span class="player-name">{{ currentPlayer }}</span></p>
         <p>Cartes jouées ce tour: {{ cardsPlayedThisTurn }}/{{ totalCardsPerTurn }}</p>
       </div>
-      
+
       <div class="right-actions">
         <p>Action du tour : <span class="classique">classique</span> ou <span class="action-title">{{ currentActionCard.title }}</span></p>
         <div class="action-icons">
@@ -123,7 +123,7 @@
         <div class="card-content">
           <h2>{{ currentCard.question }}</h2>
         </div>
-        <button class="scroll-button" (click)="scrollToInfo()">👁️</button>
+        <!-- <button class="scroll-button" (click)="scrollToInfo()">👁️</button> -->
       </div>
     </div>
     <button class="shiny-button next-button" (click)="nextCard()">
@@ -132,9 +132,9 @@
     <div class="info-area">
       <h3>Cartes jouées</h3>
       <div class="played-cards">
-        <img *ngFor="let cardName of playedCardNames" 
-             class="card-image" 
-             [src]="'assets/cards/' + cardName + '.jpg'" 
+        <img *ngFor="let cardName of playedCardNames"
+             class="card-image"
+             [src]="'assets/cards/' + cardName + '.jpg'"
              [alt]="cardName">
         <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
       </div>
