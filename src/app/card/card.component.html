@@ -2,7 +2,8 @@
   <h1>Pasapa</h1>
   <button class="shiny-button" routerLink="/home">Back</button>
   <div class="right">
-  <button class="icon-button" (click)="toggleRules()">❓</button>
+    <button class="icon-button" (click)="toggleRules()">📖</button>
+  <button class="icon-button" (click)="toggleRulesCategory()">❓</button>
   <button class="icon-button" (click)="toggleActionCard()">⚡ Action</button>
     </div>
 </header>
@@ -65,6 +66,7 @@
   <div *ngIf="showGameEnd" class="game-end">
     <h2>Fin de partie</h2>
     <p>Félicitations ! Vous avez terminé toutes les catégories.</p>
+    <button class="control-button" (click)="restartGame()">Restart</button>
     <button routerLink="/home" class="home-btn">Retour au menu</button>
   </div>
 
@@ -110,7 +112,8 @@
       <div class="right-actions">
         <p>Action du tour : <span class="classique">classique</span> ou <span class="action-title">{{ currentActionCard.title }}</span></p>
         <div class="action-icons">
-          <button class="icon-button" (click)="toggleRules()">❓</button>
+          <button class="icon-button" (click)="toggleRules()">📖</button>
+          <button class="icon-button" (click)="toggleRulesCategory()">❓</button>
           <button class="icon-button" (click)="toggleActionCard()">⚡</button>
         </div>
       </div>
@@ -164,6 +167,46 @@
       Le but est d' <strong>échanger et discuter</strong>.
       Donc laissez-vous aller : digressez, sortez du sujet, parlez de tout et de rien !
     </p>
+  </div>
+</div>
+
+<!-- Règles de la catégorie -->
+<div class="popup" *ngIf="showRulesCategory">
+  <!-- Léger -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==0">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+     <div class="ruglesCategory-content"> Explications catégorie 1</div>
+    
+  </div>
+  <!-- Situation -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==1">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 2</div>
+  </div>
+  <!-- Anecdotes -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==2">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 3</div>
+  </div>
+  <!-- Valeurs -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==3">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 4</div>
+  </div>
+  <!-- Futur -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==4">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 5</div>
+  </div>
+  <!-- Ethique -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==5">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 6</div>
+  </div>
+  <!-- Ensemble -->
+  <div class="popup-content" *ngIf="currentCategoryIndex==6">
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+    <div class="ruglesCategory-content"> Explications catégorie 7</div>
   </div>
 </div>
 

@@ -1,21 +1,20 @@
 export const cards = [
     // Léger category
-{ name: 'L1', category: 'Léger', question: 'Un métier que tu aurai pu faire dans une autre vie ?' },
-{ name: 'L2', category: 'Léger', question: 'Un métier que tu ne ferai jamais c’est sûr !' },
+{ name: 'L1', category: 'Léger', question: 'Un métier que tu aurais pu faire dans une autre vie ?' },
+{ name: 'L2', category: 'Léger', question: 'Un métier que tu ne voudrais vraiment pas faire !' },
 { name: 'L3', category: 'Léger', question: 'Si tu pouvais maîtriser parfaitement un instrument de musique, lequel choisirais-tu ?' },
 { name: 'L4', category: 'Léger', question: 'Quel instrument ne voudrais-tu jamais apprendre ?' },
 { name: 'L5', category: 'Léger', question: 'Si tu pouvais parler couramment une autre langue, laquelle choisirais-tu ?' },
 { name: 'L6', category: 'Léger', question: 'As tu une langue que tu as commencé à apprendre et que tu as oublié ?' },
 { name: 'L7', category: 'Léger', question: 'Qui parmis les joueurs te semble le plus susceptible d’aller en soirée le week-end ?' },
-{ name: 'L8', category: 'Léger', question: 'De rester dans sa chambre le week-end ?' },
-{ name: 'L9', category: 'Léger', question: 'Si tu pouvais dîner avec une personne, vivante ou morte, qui choisirais-tu ?' },
+{ name: 'L8', category: 'Léger', question: 'Qui parmis les joueurs te semble le plus susceptible de rester dans sa chambre le week-end ?' },
+{ name: 'L9', category: 'Léger', question: 'Si tu pouvais dîner avec n\'importe qui parmis les être humains ayant existés, qui choisirais-tu ?' },
 { name: 'L10', category: 'Léger', question: 'Si tu devais choisir une personne que tu vois rarement, avec qui tu devrais cohabiter pour la vie ?' },
 { name: 'L11', category: 'Léger', question: 'Aimerais-tu être connu ? Si oui, comment ?' },
-{ name: 'L12', category: 'Léger', question: 'Un sujet à propos de toi que tu souhaiterai garder secret du grand public ?' },
 { name: 'L13', category: 'Léger', question: 'Avant de passer un appel, répètes-tu parfois ce que tu vas dire ?' },
 { name: 'L14', category: 'Léger', question: 'Est ce que tu as des discussions à voix haute tout seul ?' },
 { name: 'L15', category: 'Léger', question: 'Si tu pouvais choisir une époque pour y vivre (passée ou future), laquelle choisirais-tu ?' },
-{ name: 'L16', category: 'Léger', question: 'Une époque en particulier où tu ne souhaiterai pas vivre ?' },
+{ name: 'L16', category: 'Léger', question: 'Y a t\'il une époque en particulier où tu ne souhaiterai pas vivre ?' },
 
 // Situation category
 { name: 'S1', category: 'Situation', question: 'Tu es dans une file d’attente interminable. Que fais-tu pour t’occuper ?' },

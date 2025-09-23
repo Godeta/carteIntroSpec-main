@@ -235,6 +235,7 @@ export class CardComponent implements AfterViewInit {
   }
   // Popup states
   showRules = false;
+  showRulesCategory = false;
   showActionCard = false;
 
 // Action card data
@@ -268,6 +269,10 @@ availableActionCards = availableActionCards;
   // Popup toggles
   toggleRules() {
     this.showRules = !this.showRules;
+  }
+
+  toggleRulesCategory() {
+    this.showRulesCategory = !this.showRulesCategory;
   }
 
   toggleActionCard() {
