@@ -1,0 +1,54 @@
+<main class="couple-background">
+  <button class="back-button" routerLink="/home">
+    <span>↩️ Menu</span>
+  </button>
+
+  <div class="card-container">
+    <!-- Start screen -->
+    <div *ngIf="!gameStarted" class="start-screen">
+      <h1>Questions en Couple 💕</h1>
+      <button class="couple-button start-button" (click)="startGame()">
+        <span>Commencer une partie</span>
+      </button>
+    </div>
+
+    <!-- Game screen -->
+    <div *ngIf="gameStarted" class="game-screen">
+      <!-- Category Selector -->
+      <div class="category-selector">
+        <button *ngFor="let category of uniqueCategories" (click)="filterCardsByCategory(category)" class="category-button">
+          {{ category }}
+        </button>
+      </div>
+      <div class="category-description">
+        {{ categoryDescription }}
+      </div>
+      
+      <div class="scroll">
+        <div class="card">
+          <div class="category-badge">
+            <span class="category-icon">
+              {{
+                currentCard.category === 'Logique' ? '🧩' :
+                currentCard.category === 'Math' ? '🔢' :
+                currentCard.category === 'Devinette' ? '🤔' :
+                currentCard.category === 'Hors cadre / Marrant' ? '😜' :
+                currentCard.category === 'Casse-tête / Enquête' ? '🕵️‍♂️' :
+                '❓'
+              }}
+            </span>
+
+            {{ currentCard.category }}
+          </div>
+          <div class="card-content">
+            <h2>{{ currentCard.question }}</h2>
+            
+            <button class="couple-button next-button" (click)="nextCard()">
+              <span>Question Suivante 💖</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -333,6 +333,19 @@ main {
     }
   }
   
+  // Couple
+  &.couple-button {
+    background: linear-gradient(45deg, #E91E63, #F06292);
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    font-size: 1.2rem;
+    padding: 20px 40px;
+    
+    &:hover, &:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+  }
+  
   // Débats
   &.debates-button {
     background: linear-gradient(45deg, #FF5722, #E64A19);
@@ -564,10 +577,26 @@ main {
   }
 }
 
+.website-link {
+  color: #0808a8;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+  
+  &:hover {
+    color: #2196F3;
+    text-decoration: underline;
+  }
+}
+
 // ... (keep existing styles) ...
 
 .info-button {
-  background: linear-gradient(45deg, #FF9800, #FF5722);
+  background: linear-gradient(45deg, #9add27, #65df07);
 }
 
 .info-panel {

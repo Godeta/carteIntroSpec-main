@@ -70,6 +70,18 @@ export class CardComponent implements AfterViewInit {
     }
   }
 
+  getDisplayCardName(cardName: string): string {
+  const match = cardName.match(/^L(\d+)$/);
+  if (match) {
+    const number = parseInt(match[1], 10);
+    if (number > 16) {
+      const randomValue = Math.floor(Math.random() * 16) + 1;
+      return `L${randomValue}`;
+    }
+  }
+  return cardName;
+}
+
   ngAfterViewInit() {
     if (this.cardElement) {
       this.setupSwipeGestures();

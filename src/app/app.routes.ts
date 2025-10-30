@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./brainstorm/brain.component').then((m) => m.BrainComponent),
   },
   {
+    path: 'couple',
+    loadComponent: () => import('./couple/couple.component').then((m) => m.CoupleComponent),
+  },
+  {
     path: 'ecsi',
     loadComponent: () => import('./ecsi/ecsi.component').then((m) => m.EcsiComponent),
   },

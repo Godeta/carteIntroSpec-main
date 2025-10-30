@@ -135,12 +135,13 @@
     <div class="info-area">
       <h3>Cartes jouées</h3>
       <div class="played-cards">
-        <img *ngFor="let cardName of playedCardNames"
-             class="card-image"
-             [src]="'assets/cards/' + cardName + '.jpg'"
-             [alt]="cardName">
-        <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
-      </div>
+      <img *ngFor="let cardName of playedCardNames"
+          class="card-image"
+          [src]="'assets/cards/' + getDisplayCardName(cardName) + '.jpg'"
+          [alt]="cardName">
+      <p *ngIf="playedCardNames.length === 0">Aucune carte jouée pour le moment</p>
+    </div>
+
     </div>
   </div>
 
@@ -172,43 +173,60 @@
 
 <!-- Règles de la catégorie -->
 <div class="popup" *ngIf="showRulesCategory">
-  <!-- Léger -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==0">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-     <div class="ruglesCategory-content"> Explications catégorie 1</div>
+  <!-- Léger, Situation ou autre -->
+  <div class="popup-content" > 
+    <!-- *ngIf="currentCategoryIndex==0"> -->
+      <button class="close-button" (click)="toggleRulesCategory()">✖</button>
+      <div class="rulesCategory-content" > 
+        <!-- faire une structure type dans laquelle je vais venir greffer chaque explications juste la taille des paragraphes va varier : Contexte, recap, exemple, conclu ? -->
+        <h2>Explications de la catégorie {{ currentCard.category }}</h2>
+            <h3> Principe : </h3>
+            <p> Chaque joueur reçoit une situation de la vie quotidienne. Ces situations sont volontairement ouvertes et peuvent provoquer des réactions très différentes selon les personnes. Le but est de réfléchir à sa propre manière d’agir, de partager ses émotions, et éventuellement de raconter une anecdote personnelle liée à cette situation.</p>
+            <h3> Que faire avec la question ?</h3>
+            Quand tu lis une situation, tu peux : / / 1. Décrire ta réaction spontanée
     
+    → Qu’est-ce que tu ferais instinctivement ?
+    
+    → Est-ce que tu agirais ou resterais passif ?
+    
+/ / 2. Lister les émotions que tu pourrais ressentir
+    
+    → Stress, joie, gêne, colère, surprise, tristesse, fierté…
+    
+    → Est-ce que ces émotions influencent ta réaction ?
+    
+/ / 3. Partager une histoire personnelle (si tu veux)
+    
+    → Est-ce que ça t’est déjà arrivé ?
+    
+    → Comment ça s’est passé ?
+    
+    → Est-ce que tu as réagi différemment à l’époque ?
+    
+/ / 4. Imaginer d’autres façons de réagir
+    
+    → Comment quelqu’un d’autre pourrait réagir ?
+    
+    → Est-ce que tu comprends ces autres réactions ?
+            <h3> Exemple </h3>
+            <p> Situation : Tu croises un ancien camarade de classe dans la rue.
+
+/ / Réaction : Je le salue avec enthousiasme, on discute un peu.
+
+/ / Émotions : Surprise, nostalgie, un peu de gêne.
+
+/ / Histoire : Ça m’est arrivé l’an dernier, on a repris contact après 10 ans !
+
+/ / Autres réactions possibles : Certains préfèrent éviter le contact, par timidité ou par malaise.</p>
+            
+            <p>
+              ---- <br/>
+              Bien sûr <strong> ne soyez pas trop strict avec les règles</strong>, discutez et amusez-vous !
+              
+            </p>
+        </div>
+     </div>
   </div>
-  <!-- Situation -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==1">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 2</div>
-  </div>
-  <!-- Anecdotes -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==2">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 3</div>
-  </div>
-  <!-- Valeurs -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==3">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 4</div>
-  </div>
-  <!-- Futur -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==4">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 5</div>
-  </div>
-  <!-- Ethique -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==5">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 6</div>
-  </div>
-  <!-- Ensemble -->
-  <div class="popup-content" *ngIf="currentCategoryIndex==6">
-    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-    <div class="ruglesCategory-content"> Explications catégorie 7</div>
-  </div>
-</div>
 
 
 <!-- Action Card Popup -->

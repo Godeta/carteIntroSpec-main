@@ -40,11 +40,12 @@ export class HomePage {
     buttons: {
       introspection: 'Cartes d\'Introspection',
       fun: 'Jeux d\'Ambiance',
-      enigmas: 'Énigmes',
+      couple: '💕 A deux en couple',
+      enigmas: '🤔 Énigmes',
       brainstorm: 'Brainstorm - réflexion collective',
       debates: 'Débats Roleplay',
-      options: 'Options',
-      info: 'Infos'
+      options: '⚙️ Options',
+      info: '❓Infos'
     }
   };
 
@@ -64,11 +65,12 @@ export class HomePage {
     buttons: {
       introspection: 'Introspection Cards',
       fun: 'Party Games',
-      enigmas: 'Enigmas',
+      couple: '💕 Two as a couple',
+      enigmas: '🤔 Enigmas',
       brainstorm: 'Brainstorm - collective thinking',
       debates: 'Roleplay Debates',
-      options: 'Options',
-      info: 'Info'
+      options: '⚙️ Options',
+      info: '❓Info'
     }
   };
 
@@ -88,11 +90,12 @@ export class HomePage {
     buttons: {
       introspection: 'Cartas de Introspección',
       fun: 'Juegos de Ambiente',
-      enigmas: 'Enigmas',
+      couple: '💕 Dos en una pareja',
+      enigmas: '🤔 Enigmas',
       brainstorm: 'Lluvia de ideas - pensamiento colectivo',
       debates: 'Debates de Rol',
-      options: 'Opciones',
-      info: 'Información'
+      options: '⚙️ Opciones',
+      info: '❓Información'
     }
   };
 

@@ -13,7 +13,11 @@
 {{ infoContent.buttons.introspection }}
         </div>
 
-        <div class="shiny-button fun-button" routerLink="/fun">
+        <div class="shiny-button couple-button" routerLink="/couple">
+          {{ infoContent.buttons.couple }}
+        </div>
+
+        <div class="shiny-button fun-button" routerLink="/fun" *ngIf="advancedModes">
 {{ infoContent.buttons.fun }}
         </div>
 
@@ -36,8 +40,8 @@
 {{ infoContent.buttons.debates }}
         </div>
         
+        <button class="shiny-button info-button" (click)="toggleInfo()">{{ infoContent.buttons.info }}</button>
         <button class="shiny-button secondary" (click)="toggleOptions()">{{ infoContent.buttons.options }}</button>
-        <button class="shiny-button info" (click)="toggleInfo()">{{ infoContent.buttons.info }}</button>
         <a href="https://forms.gle/skvWgiUhYQkVCEoC9" target="_blank" class="contact-link">Contact</a>
       </div>
 
@@ -79,7 +83,8 @@
     <!-- Info Panel -->
     <div class="info-panel" [class.active]="showInfo">
       <button class="close-button" (click)="toggleInfo()">×</button>
-
+      <h1> Infos : <br/> <br/> </h1>
+      <a href="https://godeta-github-io.vercel.app" target="_blank" class="website-link text-xl">Site web officiel</a>
       <div class="info-section">
         <h2>{{ infoContent.section1.title }}</h2>
         <p>{{ infoContent.section1.content }} </p>
