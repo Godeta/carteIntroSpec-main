@@ -7,6 +7,9 @@ Ce projet utilise **Ionic** et **Capacitor** pour créer une application mobile 
 
 ## 🎮 Jouer maintenant
 
+### Informations 
+**[Page qui présente le jeu](https://godeta-github-io.vercel.app)**
+
 ### 🌐 Version en ligne
 **[Jouer directement dans le navigateur](https://godeta.github.io/carteIntroSpec-main/)**
 

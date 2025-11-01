@@ -175,9 +175,27 @@
 <div class="popup" *ngIf="showRulesCategory">
   <!-- Léger, Situation ou autre -->
   <div class="popup-content" > 
+    <button class="close-button" (click)="toggleRulesCategory()">✖</button>
     <!-- *ngIf="currentCategoryIndex==0"> -->
-      <button class="close-button" (click)="toggleRulesCategory()">✖</button>
-      <div class="rulesCategory-content" > 
+
+    <div class="rulesCategory-content" *ngIf="currentCategoryIndex==0" > 
+        <!-- faire une structure type dans laquelle je vais venir greffer chaque explications juste la taille des paragraphes va varier : Contexte, recap, exemple, conclu ? -->
+        <h2>Explications de la catégorie {{ currentCard.category }}</h2>
+            <h3> Principe : </h3>
+            <p> Des questions un peu diverses pour briser la glace.</p>
+            
+            <h3> Exemple </h3>
+            <p> Léger : Pourrais-tu dormir dans une maison lugubre et connue pour être hantée ?
+            <br/>- Oulah jamais rien, j'ai déjà fait une nuit blanche suite à un cauchemard après un épisode de Scoubidou !</p>
+            
+            <p>
+              ---- <br/>
+              Bien sûr <strong> ne soyez pas trop strict avec les règles</strong>, discutez et amusez-vous !
+              
+            </p>
+        </div> <!-- fin règles léger -->
+      
+      <div class="rulesCategory-content" *ngIf="currentCategoryIndex==1" > 
         <!-- faire une structure type dans laquelle je vais venir greffer chaque explications juste la taille des paragraphes va varier : Contexte, recap, exemple, conclu ? -->
         <h2>Explications de la catégorie {{ currentCard.category }}</h2>
             <h3> Principe : </h3>
@@ -224,7 +242,20 @@
               Bien sûr <strong> ne soyez pas trop strict avec les règles</strong>, discutez et amusez-vous !
               
             </p>
+        </div> <!-- fin règles situation -->
+
+        <div class="rulesCategory-content" *ngIf="currentCategoryIndex>1" > 
+        <!-- faire une structure type dans laquelle je vais venir greffer chaque explications juste la taille des paragraphes va varier : Contexte, recap, exemple, conclu ? -->
+        <h2>Explications de la catégorie {{ currentCard.category }}</h2>
+            <h3> Principe : </h3>
+            <p> Des questions plus personnelles, qui peuvent susciter des réactions donc restez respectueux et ouvert aux autres. L'idée est d'avoir un cadre pour s'exprimer avec sincérité.</p>
+            <p>
+              ---- <br/>
+              Bien sûr <strong> ne soyez pas trop strict avec les règles</strong>, discutez et amusez-vous !
+              
+            </p>
         </div>
+
      </div>
   </div>
 

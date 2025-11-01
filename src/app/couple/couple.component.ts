@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonButton, IonRouterLink } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { categoryDescriptions, coupleCards, CoupleCard } from './couple-data';
+import { categoryDescriptions, coupleCards, CoupleCard, en_categoryDescriptions, en_coupleCards, es_categoryDescriptions, es_coupleCards } from './couple-data';
 
 @Component({
   selector: 'app-couple',
@@ -26,7 +26,9 @@ export class CoupleComponent implements OnInit {
   gameStarted: boolean = false;
   isFirstQuestion: boolean = true;
 
-  constructor() {}
+  constructor() {
+    this.loadLanguageData();
+  }
 ngOnInit(): void {
     this.extractUniqueCategories();
     this.filterCardsByCategory(this.selectedCategory);
@@ -78,19 +80,62 @@ ngOnInit(): void {
   }
 
   setFirstQuestion(): void {
-    // First question is always from "Amusant, divers"
-    const amusantCards = this.cards.filter(card => card.category === 'Amusant, divers');
+    // First question is always from fun category (language-dependent)
+    const funCategory = this.getFunCategoryName();
+    const amusantCards = this.cards.filter(card => card.category === funCategory);
     this.filteredCards = amusantCards;
     this.currentCardIndex = Math.floor(Math.random() * amusantCards.length);
+  }
+
+  getFunCategoryName(): string {
+    try {
+      const language = localStorage.getItem('language') || 'fr';
+      if (language === 'en') return 'Fun, various';
+      if (language === 'es') return 'Divertido, varios';
+      return 'Amusant, divers';
+    } catch (e) {
+      return 'Amusant, divers';
+    }
+  }
+
+  getIntimacyCategoryName(): string {
+    try {
+      const language = localStorage.getItem('language') || 'fr';
+      if (language === 'en') return 'Sexuality and intimacy';
+      if (language === 'es') return 'Sexualidad e intimidad';
+      return 'Sexualité et intimité';
+    } catch (e) {
+      return 'Sexualité et intimité';
+    }
   }
 
   nextCard(): void {
     if (this.isFirstQuestion) {
       this.isFirstQuestion = false;
-      // After first question, use all categories except "Sexualité et intimité"
-      this.filteredCards = this.cards.filter(card => card.category !== 'Sexualité et intimité');
+      // After first question, use all categories except intimacy category
+      const intimacyCategory = this.getIntimacyCategoryName();
+      this.filteredCards = this.cards.filter(card => card.category !== intimacyCategory);
     }
     this.currentCardIndex = Math.floor(Math.random() * this.filteredCards.length);
+  }
+
+  loadLanguageData() {
+    try {
+      const language = localStorage.getItem('language') || 'fr';
+      if (language === 'en') {
+        this.cards = en_coupleCards;
+        this.categoryDescriptions = en_categoryDescriptions;
+      } else if (language === 'es') {
+        this.cards = es_coupleCards;
+        this.categoryDescriptions = es_categoryDescriptions;
+      } else {
+        this.cards = coupleCards;
+        this.categoryDescriptions = categoryDescriptions;
+      }
+    } catch (e) {
+      this.cards = coupleCards;
+      this.categoryDescriptions = categoryDescriptions;
+    }
   }
 
   private shuffleCards(): void {
